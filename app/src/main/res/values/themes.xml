@@ -24,6 +24,7 @@
 
         <item name="textInputStyle">@style/MyInputStyle</item>
         <item name="bottomAppBarStyle">@style/MyBottomAppBarStyle</item>
+        <item name="chipStyle">@style/MyChipStyle</item>
 
     </style>
 
@@ -38,4 +39,9 @@
     <style name="MyBottomAppBarStyle" parent="Widget.MaterialComponents.BottomAppBar">
         <item name="backgroundTint">#B6ECEC</item>
     </style>
+
+    <style name="MyChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
+    <item name="backgroundTint">@color/blu_500</item>
+    </style>
+
 </resources>

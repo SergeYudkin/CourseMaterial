@@ -18,6 +18,7 @@ import coil.load
 import com.example.coursematerial.R
 import com.example.coursematerial.view.MainActivity
 import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
+import com.example.coursematerial.view.settings.SettingsFragment
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -41,11 +42,6 @@ class PictureOfTheDayFragment : Fragment() {
     }
 
 
-   /* override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }*/
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,7 +60,8 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
-            R.id.app_bar_settings -> Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show()
+            R.id.app_bar_settings -> requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container,SettingsFragment.newInstance()).commit()
             android.R.id.home-> {
                 BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager,"")
             }
@@ -85,7 +82,6 @@ class PictureOfTheDayFragment : Fragment() {
 
 
     }
-
 
     fun FAB(){
         binding.fab.setOnClickListener {
