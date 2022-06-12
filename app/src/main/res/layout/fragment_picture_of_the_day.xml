@@ -35,7 +35,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_no_photo_vector" />
 
-
+        <include android:id="@+id/lifeHack"
+            layout="@layout/bottom_sheet_layout"/>
 
 
     <com.google.android.material.bottomappbar.BottomAppBar

@@ -19,6 +19,7 @@ import com.example.coursematerial.view.MainActivity
 import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import retrofit2.http.Url
 import java.util.*
 
@@ -55,7 +56,28 @@ class PictureOfTheDayFragment : Fragment() {
         request()
         clickWiki()
 
+        val params = (binding.lifeHack.bottomSheetContainer.layoutParams as CoordinatorLayout.LayoutParams)
+        val behavior =  params.behavior as BottomSheetBehavior
+        behavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+        behavior. addBottomSheetCallback(object:BottomSheetBehavior
+        .BottomSheetCallback(){
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                when(newState){
 
+                 /*   BottomSheetBehavior.STATE_COLLAPSED -> { TODO() }
+                    BottomSheetBehavior.STATE_DRAGGING -> { TODO() }
+                    BottomSheetBehavior.STATE_EXPANDED -> { TODO() }
+                    BottomSheetBehavior.STATE_HALF_EXPANDED -> { TODO() }
+                    BottomSheetBehavior.STATE_HIDDEN -> { TODO() }
+                    BottomSheetBehavior.STATE_SETTLING -> { TODO() }*/
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                Log.d("@@@","$slideOffset slideOffset")
+            }
+
+        })
     }
 
     private fun clickWiki(){
@@ -84,6 +106,10 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.imageView.load(appState.serverResponseData.hdurl){
                     // дз placehilde+error+transform
                 }
+
+                binding.lifeHack.title.text = appState.serverResponseData.title
+                // дз эксплонейшн
+
             }
         }
     }
