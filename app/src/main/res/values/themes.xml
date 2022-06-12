@@ -14,9 +14,15 @@
         <!-- Customize your theme here. -->
 
         <item name="materialButtonStyle">@style/MyButtonStyle</item>
+
+        <item name="textInputStyle">@style/MyInputStyle</item>
     </style>
 
     <style name="MyButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">#EF1611</item>
+    </style>
+
+    <style name="MyInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">#EF1611</item>
     </style>
 </resources>

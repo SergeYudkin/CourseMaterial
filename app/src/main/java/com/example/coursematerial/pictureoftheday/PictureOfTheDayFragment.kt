@@ -1,18 +1,26 @@
 package com.example.coursematerial.pictureoftheday
 
 
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
-
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import coil.load
-
+import com.example.coursematerial.view.MainActivity
 import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
+import retrofit2.http.Url
+import java.util.*
 
 class PictureOfTheDayFragment : Fragment() {
 
@@ -44,6 +52,24 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        request()
+        clickWiki()
+
+
+    }
+
+    private fun clickWiki(){
+
+        binding.inputLayout.setEndIconOnClickListener{
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data =
+                    Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+            })
+        }
+
+    }
+
+    private fun request(){
         viewModel.getLiveDataForViewToObserve().observe(viewLifecycleOwner) {
             renderData(it)
         }
