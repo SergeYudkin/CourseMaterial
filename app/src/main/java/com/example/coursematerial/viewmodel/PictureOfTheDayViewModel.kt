@@ -3,6 +3,7 @@ package com.example.coursematerial.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.coursematerial.BuildConfig
+import com.example.coursematerial.R
 import com.example.coursematerial.model.PictureOfTheDayRetrofitImpl
 import com.example.coursematerial.model.PictureOfTheDayServerResponseData
 import retrofit2.Call
@@ -19,6 +20,7 @@ class PictureOfTheDayViewModel(
     fun sendServerRequest(){
         liveDataForViewToObserve.postValue(AppState.Loading(null))
         retrofitImpl.getRetrofitImpl().getPictureOfTheDay(BuildConfig.NASA_API_KEY).enqueue(callback)
+        retrofitImpl.getRetrofitImpl().getPictureOfTheDayTemp(BuildConfig.NASA_API_KEY).enqueue(callback)
     }
 
     private val callback = object : Callback<PictureOfTheDayServerResponseData>{
@@ -31,12 +33,12 @@ class PictureOfTheDayViewModel(
                     liveDataForViewToObserve.postValue(AppState.Success(it))
                 }
             }else{
-                //дз
+                liveDataForViewToObserve.postValue(AppState.Error(R.string.error_code))
             }
         }
 
         override fun onFailure(call: Call<PictureOfTheDayServerResponseData>, t: Throwable) {
-            //дз
+            liveDataForViewToObserve.postValue(AppState.Error(R.string.error_code))
         }
 
     }

@@ -1,6 +1,7 @@
 package com.example.coursematerial.pictureoftheday
 
 
+import android.app.Application
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
@@ -18,6 +19,7 @@ import coil.load
 import com.example.coursematerial.R
 import com.example.coursematerial.view.MainActivity
 import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
+import com.example.coursematerial.pictureoftheday.PictureOfTheDayFragment.Companion.newInstance
 import com.example.coursematerial.view.settings.SettingsFragment
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
@@ -115,7 +117,7 @@ class PictureOfTheDayFragment : Fragment() {
     private fun BSB (){
         val params = (binding.lifeHack.bottomSheetContainer.layoutParams as CoordinatorLayout.LayoutParams)
         val behavior =  params.behavior as BottomSheetBehavior
-        behavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+        behavior.state = BottomSheetBehavior.STATE_HIDDEN
         behavior. addBottomSheetCallback(object:BottomSheetBehavior
         .BottomSheetCallback(){
             override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -157,15 +159,21 @@ class PictureOfTheDayFragment : Fragment() {
 
     private fun renderData(appState: AppState){
         when(appState){
-            is AppState.Error -> {/*TODO()*/}
-            is AppState.Loading -> {/*TODO()*/}
+            is AppState.Error -> {}
+            is AppState.Loading -> {
+                 BottomSheetBehavior.STATE_HIDDEN
+                binding.imageView.load(R.drawable.loadingfast)
+            }
             is AppState.Success -> {
+
+                BottomSheetBehavior.STATE_HIDDEN
                 binding.imageView.load(appState.serverResponseData.hdurl){
-                    // дз placehilde+error+transform
+                  error(R.drawable.youarestupidstupid)
+                    placeholder(R.drawable.loadingfast)
                 }
 
                 binding.lifeHack.title.text = appState.serverResponseData.title
-                // дз эксплонейшн
+                binding.lifeHack.explanation.text = appState.serverResponseData.explanation
 
             }
         }
