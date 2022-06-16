@@ -11,16 +11,32 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
+
 class PictureOfTheDayViewModel(
     private val liveDataForViewToObserve: MutableLiveData<AppState> = MutableLiveData(),
     private val retrofitImpl: PictureOfTheDayRetrofitImpl = PictureOfTheDayRetrofitImpl()
 ) : ViewModel() {
 
     fun getLiveDataForViewToObserve() = liveDataForViewToObserve
-    fun sendServerRequest(){
-        liveDataForViewToObserve.postValue(AppState.Loading(null))
-        retrofitImpl.getRetrofitImpl().getPictureOfTheDay(BuildConfig.NASA_API_KEY).enqueue(callback)
-        retrofitImpl.getRetrofitImpl().getPictureOfTheDayTemp(BuildConfig.NASA_API_KEY).enqueue(callback)
+
+    fun sendServerRequest() {
+        liveDataForViewToObserve.value = AppState.Loading(0)
+        val apiKey: String = BuildConfig.NASA_API_KEY
+        if (apiKey.isBlank()) {
+            liveDataForViewToObserve.value = AppState.Error(418)
+        } else {
+            retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey).enqueue(callback)
+        }
+    }
+
+    fun sendServerRequest(date:String) {
+        liveDataForViewToObserve.value = AppState.Loading(0)
+        val apiKey: String = BuildConfig.NASA_API_KEY
+        if (apiKey.isBlank()) {
+            liveDataForViewToObserve.value = AppState.Error(418)
+        } else {
+            retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey,date).enqueue(callback)
+        }
     }
 
     private val callback = object : Callback<PictureOfTheDayServerResponseData>{

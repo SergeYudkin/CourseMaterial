@@ -8,7 +8,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout"
-        android:layout_width="388dp"
+        android:layout_width="401dp"
         android:layout_height="wrap_content"
         android:hint="@string/search_wiki"
         app:counterEnabled="true"
@@ -18,10 +18,42 @@
         app:helperText="@string/wiki_helper_text"
         app:layout_constraintBottom_toTopOf="@+id/image_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        >
 
     </com.google.android.material.textfield.TextInputLayout>
 
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group"
+        android:paddingVertical="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:chipSpacingHorizontal="75dp"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="chip1"
+            android:text="@string/today"
+            app:chipStartPadding="8dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/yesterday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="chip2"
+            android:text="@string/yesterday" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/day_before_yesterday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="chip3"
+            android:text="@string/day_before_yesterday" />
+    </com.google.android.material.chip.ChipGroup>
 
     <com.example.coursematerial.utils.EquilateralImageView
         android:id="@+id/image_view"
@@ -56,7 +88,7 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/input_edit_text"
-        android:layout_width="match_parent"
+        android:layout_width="394dp"
         android:layout_height="wrap_content"
         app:layout_anchor="@+id/input_layout"
         app:layout_anchorGravity="center" />

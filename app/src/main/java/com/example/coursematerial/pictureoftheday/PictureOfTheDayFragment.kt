@@ -3,9 +3,11 @@ package com.example.coursematerial.pictureoftheday
 
 import android.app.Application
 import android.content.Intent
+
 import android.net.Uri
 import android.util.Log
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.view.*
 import android.widget.Toast
 import android.view.LayoutInflater
@@ -17,8 +19,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.coursematerial.R
-import com.example.coursematerial.view.MainActivity
+import com.example.coursematerial.R.*
 import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
+import com.example.coursematerial.view.MainActivity
+
 import com.example.coursematerial.pictureoftheday.PictureOfTheDayFragment.Companion.newInstance
 import com.example.coursematerial.view.settings.SettingsFragment
 import com.example.coursematerial.viewmodel.AppState
@@ -26,12 +30,14 @@ import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import retrofit2.http.Url
+import java.text.SimpleDateFormat
+
 import java.util.*
 
 class PictureOfTheDayFragment : Fragment() {
 
 
-    var isMain = true
+    private var isMain = true
 
     private var _binding : FragmentPictureOfTheDayBinding? = null
     private val binding : FragmentPictureOfTheDayBinding
@@ -76,6 +82,16 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+
+        binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId){
+                R.id.yesterday ->{viewModel.sendServerRequest(takeDate(-1))}
+                R.id.day_before_yesterday->{viewModel.sendServerRequest(takeDate(-2))}
+                R.id.today ->{viewModel.sendServerRequest()}
+
+            }
+        }
+
         actionBar()
         request()
         clickWiki()
@@ -85,26 +101,36 @@ class PictureOfTheDayFragment : Fragment() {
 
     }
 
+    private fun takeDate(count: Int): String {
+        val currentDate = Calendar.getInstance()
+        currentDate.add(Calendar.DAY_OF_MONTH, count)
+        val format1 = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        format1.timeZone = TimeZone.getTimeZone("EST")
+        return format1.format(currentDate.time)
+    }
+
+
+
     fun FAB(){
         binding.fab.setOnClickListener {
             isMain = !isMain
             if (!isMain) {
                 binding.bottomAppBar.navigationIcon = null
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_back_fab))
-                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other)
+                binding.fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), drawable.ic_back_fab))
+                binding.bottomAppBar.replaceMenu(menu.menu_bottom_bar_other)
             } else {
                 binding.bottomAppBar.navigationIcon = ContextCompat.getDrawable(requireContext(),
-                    R.drawable.ic_hamburger_menu_bottom_bar)
+                    drawable.ic_hamburger_menu_bottom_bar)
 
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
                 binding.fab.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.ic_plus_fab
+                        drawable.ic_plus_fab
                     )
                 )
-                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
+                binding.bottomAppBar.replaceMenu(menu.menu_bottom_bar)
             }
 
         }
@@ -149,7 +175,6 @@ class PictureOfTheDayFragment : Fragment() {
         }
 
     }
-
     private fun request(){
         viewModel.getLiveDataForViewToObserve().observe(viewLifecycleOwner) {
             renderData(it)
@@ -162,14 +187,14 @@ class PictureOfTheDayFragment : Fragment() {
             is AppState.Error -> {}
             is AppState.Loading -> {
                  BottomSheetBehavior.STATE_HIDDEN
-                binding.imageView.load(R.drawable.loadingfast)
+                binding.imageView.load(drawable.loadingfast)
             }
             is AppState.Success -> {
 
                 BottomSheetBehavior.STATE_HIDDEN
                 binding.imageView.load(appState.serverResponseData.hdurl){
-                  error(R.drawable.youarestupidstupid)
-                    placeholder(R.drawable.loadingfast)
+                  error(drawable.youarestupidstupid)
+                    placeholder(drawable.loadingfast)
                 }
 
                 binding.lifeHack.title.text = appState.serverResponseData.title
