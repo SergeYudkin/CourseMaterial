@@ -24,6 +24,7 @@ import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
 import com.example.coursematerial.view.MainActivity
 
 import com.example.coursematerial.pictureoftheday.PictureOfTheDayFragment.Companion.newInstance
+import com.example.coursematerial.utils.Parameters
 import com.example.coursematerial.view.settings.SettingsFragment
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
@@ -83,14 +84,9 @@ class PictureOfTheDayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
 
-        binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
-            when(checkedId){
-                R.id.yesterday ->{viewModel.sendServerRequest(takeDate(-1))}
-                R.id.day_before_yesterday->{viewModel.sendServerRequest(takeDate(-2))}
-                R.id.today ->{viewModel.sendServerRequest()}
+        clickRadio()
 
-            }
-        }
+        clickChip()
 
         actionBar()
         request()
@@ -109,7 +105,30 @@ class PictureOfTheDayFragment : Fragment() {
         return format1.format(currentDate.time)
     }
 
+    private fun clickRadio() {
+        binding.radioGroup.setOnCheckedChangeListener{group, checkedId ->
+            when(checkedId){
+                R.id.radio_button_blu->{Parameters.getInstance().theme = R.style.MyBlueTheme
+                requireActivity().recreate()}
+                R.id.radio_button_red->{Parameters.getInstance().theme = R.style.MyRedTheme
+                    requireActivity().recreate()}
+                R.id.radio_button_green->{Parameters.getInstance().theme = R.style.MyGreenTheme
+                    requireActivity().recreate()}
+            }
 
+        }
+    }
+
+        private fun clickChip(){
+            binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
+                when(checkedId){
+                    R.id.yesterday ->{viewModel.sendServerRequest(takeDate(-1))}
+                    R.id.day_before_yesterday->{viewModel.sendServerRequest(takeDate(-2))}
+                    R.id.today ->{viewModel.sendServerRequest()}
+
+                }
+            }
+        }
 
     fun FAB(){
         binding.fab.setOnClickListener {

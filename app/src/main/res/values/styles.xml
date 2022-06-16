@@ -11,6 +11,11 @@
         <item name="android:letterSpacing">0.0108571429</item> <!-- расстояние между буквами-->
     </style>
 
+    <style name="MyShapeAppearanceSmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
 
     <style name="MyBottomAppBarStyle" parent="Widget.MaterialComponents.BottomAppBar.Colored">
         <item name="backgroundTint">?superColor</item>

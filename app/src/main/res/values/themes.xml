@@ -19,6 +19,8 @@
 
         <item name="textAppearanceBody2">@style/MyTextAppearance</item>
 
+        <item name="shapeAppearanceSmallComponent">@style/MyShapeAppearanceSmallComponent</item>
+
         <item name="android:statusBarColor" tools:targetApi="l">?superColor</item>
         <!-- Customize your theme here. -->
         <item name="materialButtonStyle">@style/MyButtonStyle</item>
