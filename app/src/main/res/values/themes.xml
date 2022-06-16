@@ -2,46 +2,41 @@
     <!-- Base application theme. -->
     <style name="Theme.CourseMaterial" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="android:navigationBarColor">@color/blu_500</item>
-        <item name="colorPrimary">@color/blu_600</item>
+        <item name="android:navigationBarColor">?superColor</item>
+        <item name="colorPrimary">?superColor</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryContainer">@color/blu_100</item>
-        <item name="colorOnPrimaryContainer">@color/blu_900</item>
-        <item name="colorPrimaryInverse">@color/blu_200</item>
-        <item name="colorSecondary">@color/blu_600</item>
+        <item name="colorPrimaryContainer">?superColor</item>
+        <item name="colorOnPrimaryContainer">?superColor</item>
+        <item name="colorPrimaryInverse">?superColor</item>
+        <item name="colorSecondary">?superColor</item>
         <item name="colorOnSecondary">@color/white</item>
-        <item name="colorSecondaryContainer">@color/blu_100</item>
-        <item name="colorOnSecondaryContainer">@color/blu_900</item>
-        <item name="colorTertiary">@color/blu_600</item>
+        <item name="colorSecondaryContainer">?superColor</item>
+        <item name="colorOnSecondaryContainer">?superColor</item>
+        <item name="colorTertiary">?superColor</item>
         <item name="colorOnTertiary">@color/white</item>
-        <item name="colorTertiaryContainer">@color/blu_100</item>
-        <item name="colorOnTertiaryContainer">@color/blu_900</item>
+        <item name="colorTertiaryContainer">?superColor</item>
+        <item name="colorOnTertiaryContainer">?superColor</item>
 
+        <item name="textAppearanceBody2">@style/MyTextAppearance</item>
 
-        <item name="android:statusBarColor" tools:targetApi="l">@color/blu_500</item>
-
+        <item name="android:statusBarColor" tools:targetApi="l">?superColor</item>
+        <!-- Customize your theme here. -->
         <item name="materialButtonStyle">@style/MyButtonStyle</item>
-
         <item name="textInputStyle">@style/MyInputStyle</item>
         <item name="bottomAppBarStyle">@style/MyBottomAppBarStyle</item>
         <item name="chipStyle">@style/MyChipStyle</item>
-
     </style>
 
-    <style name="MyButtonStyle" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">#EF1611</item>
+    <style name="MyRedTheme" parent="Theme.CourseMaterial">
+        <item name="superColor">@color/red</item>
     </style>
 
-    <style name="MyInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">#EF1611</item>
+    <style name="MyBlueTheme" parent="Theme.CourseMaterial">
+        <item name="superColor">@color/blue</item>
     </style>
 
-    <style name="MyBottomAppBarStyle" parent="Widget.MaterialComponents.BottomAppBar">
-        <item name="backgroundTint">#B6ECEC</item>
-    </style>
-
-    <style name="MyChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
-    <item name="backgroundTint">@color/blu_500</item>
+    <style name="MyGreenTheme" parent="Theme.CourseMaterial">
+        <item name="superColor">@color/green</item>
     </style>
 
 </resources>

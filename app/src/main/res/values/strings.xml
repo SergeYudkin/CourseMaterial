@@ -8,7 +8,7 @@
     <string name="search">Search</string>
     <string name="today">Сегодня</string>
     <string name="yesterday">Вчера</string>
-    <string name="day_before_yesterday">Позавчера</string>
+    <string name="day_before_yesterday">позавчера</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error_code">418</string>
 </resources>
