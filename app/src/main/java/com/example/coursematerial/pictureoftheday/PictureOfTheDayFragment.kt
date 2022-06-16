@@ -2,6 +2,7 @@ package com.example.coursematerial.pictureoftheday
 
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 
 import android.net.Uri
@@ -16,6 +17,8 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.coursematerial.R
@@ -83,11 +86,8 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-
-        clickRadio()
-
+        clickButtonStyle()
         clickChip()
-
         actionBar()
         request()
         clickWiki()
@@ -105,8 +105,29 @@ class PictureOfTheDayFragment : Fragment() {
         return format1.format(currentDate.time)
     }
 
-    private fun clickRadio() {
-        binding.radioGroup.setOnCheckedChangeListener{group, checkedId ->
+    private fun clickButtonStyle() {
+
+
+        binding.buttonBlu.setOnClickListener {
+            Parameters.getInstance().theme = R.style.MyBlueTheme
+            requireActivity().recreate()
+        }
+
+        binding.buttonRed.setOnClickListener {
+            Parameters.getInstance().theme = R.style.MyRedTheme
+            requireActivity().recreate()
+        }
+
+        binding.buttonGreen.setOnClickListener {
+            Parameters.getInstance().theme = R.style.MyGreenTheme
+            requireActivity().recreate()
+        }
+
+        binding.buttonDarkLight.setOnClickListener {
+            requireActivity().setTheme(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+
+        /*binding.radioGroup.setOnCheckedChangeListener{group, checkedId ->
             when(checkedId){
                 R.id.radio_button_blu->{Parameters.getInstance().theme = R.style.MyBlueTheme
                 requireActivity().recreate()}
@@ -114,9 +135,10 @@ class PictureOfTheDayFragment : Fragment() {
                     requireActivity().recreate()}
                 R.id.radio_button_green->{Parameters.getInstance().theme = R.style.MyGreenTheme
                     requireActivity().recreate()}
+                R.id.radio_button_dark_light-> {requireActivity().setTheme(AppCompatDelegate.MODE_NIGHT_YES)}
             }
 
-        }
+        }*/
     }
 
         private fun clickChip(){

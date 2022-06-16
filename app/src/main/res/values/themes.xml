@@ -26,7 +26,7 @@
         <item name="materialButtonStyle">@style/MyButtonStyle</item>
         <item name="textInputStyle">@style/MyInputStyle</item>
         <item name="bottomAppBarStyle">@style/MyBottomAppBarStyle</item>
-        <item name="chipStyle">@style/MyChipStyle</item>
+        <!--<item name="chipStyle">@style/MyChipStyle</item>-->
     </style>
 
     <style name="MyRedTheme" parent="Theme.CourseMaterial">
@@ -39,6 +39,13 @@
 
     <style name="MyGreenTheme" parent="Theme.CourseMaterial">
         <item name="superColor">@color/green</item>
+    </style>
+
+    <style name="DarkTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
     </style>
 
 </resources>

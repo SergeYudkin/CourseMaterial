@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -35,7 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingVertical="80dp"
-        app:chipSpacingHorizontal="75dp"
+        android:paddingStart="95dp"
+        app:chipSpacingHorizontal="-20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_layout"
@@ -43,6 +45,7 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/today"
+            style="@style/MyChipStyleStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:tag="chip1"
@@ -51,6 +54,7 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/yesterday"
+            style="@style/MyChipStyleMiddle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:tag="chip2"
@@ -58,14 +62,45 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/day_before_yesterday"
+            style="@style/MyChipStyleEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:tag="chip3"
             android:text="@string/day_before_yesterday" />
     </com.google.android.material.chip.ChipGroup>
+<LinearLayout
+    android:id="@+id/buttons_style"
+    android:paddingTop="130dp"
+    android:paddingStart="30dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_blu"
+        android:backgroundTint="@color/blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_red"
+        android:backgroundTint="@color/red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_green"
+        android:backgroundTint="@color/green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_dark_light"
+        android:backgroundTint="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
 
 
-        <RadioGroup
+       <!-- <RadioGroup
             android:id="@+id/radio_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,28 +116,31 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/blue"
                 android:checked="true"
-                android:clickable="true" />
+                android:clickable="true"
+                android:focusable="true" />
 
             <RadioButton
                 android:id="@+id/radio_button_red"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/red"
-                android:checked="false" />
+                tools:ignore="DuplicateSpeakableTextCheck" />
 
             <RadioButton
                 android:id="@+id/radio_button_green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/green"
-                android:checked="false" />
+                android:buttonTint="@color/green" />
+
             <RadioButton
-                android:id="@+id/radio_button_dark_lite"
+                android:id="@+id/radio_button_dark_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/black"
-                android:checked="false" />
-        </RadioGroup>
+                android:buttonTint="@color/black" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>-->
 
 
     <com.example.coursematerial.utils.EquilateralImageView
