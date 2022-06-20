@@ -4,6 +4,7 @@ package com.example.coursematerial.pictureoftheday
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 
 import android.net.Uri
 import android.util.Log
@@ -73,7 +74,7 @@ class PictureOfTheDayFragment : Fragment() {
         when(item.itemId){
             R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
             R.id.app_bar_settings -> requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container,SettingsFragment.newInstance()).commit()
+                .replace(R.id.container,SettingsFragment.newInstance()).addToBackStack("").commit()
             android.R.id.home-> {
                 BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager,"")
             }
@@ -111,11 +112,13 @@ class PictureOfTheDayFragment : Fragment() {
         binding.buttonBlu.setOnClickListener {
             Parameters.getInstance().theme = R.style.MyBlueTheme
             requireActivity().recreate()
+
         }
 
         binding.buttonRed.setOnClickListener {
             Parameters.getInstance().theme = R.style.MyRedTheme
             requireActivity().recreate()
+
         }
 
         binding.buttonGreen.setOnClickListener {
@@ -125,7 +128,9 @@ class PictureOfTheDayFragment : Fragment() {
 
         binding.buttonDarkLight.setOnClickListener {
             requireActivity().setTheme(AppCompatDelegate.MODE_NIGHT_YES)
+
         }
+
 
         /*binding.radioGroup.setOnCheckedChangeListener{group, checkedId ->
             when(checkedId){
@@ -251,8 +256,6 @@ class PictureOfTheDayFragment : Fragment() {
     }
 
     companion object {
-
-
         @JvmStatic
         fun newInstance() =
             PictureOfTheDayFragment()
