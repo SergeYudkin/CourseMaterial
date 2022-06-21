@@ -34,6 +34,7 @@ import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.switchmaterial.SwitchMaterial
 import retrofit2.http.Url
 import java.text.SimpleDateFormat
 
@@ -89,6 +90,7 @@ class PictureOfTheDayFragment : Fragment() {
         setHasOptionsMenu(true)
         clickButtonStyle()
         clickChip()
+        switchNightMode()
         actionBar()
         request()
         clickWiki()
@@ -126,10 +128,7 @@ class PictureOfTheDayFragment : Fragment() {
             requireActivity().recreate()
         }
 
-        binding.buttonDarkLight.setOnClickListener {
-            requireActivity().setTheme(AppCompatDelegate.MODE_NIGHT_YES)
 
-        }
 
 
         /*binding.radioGroup.setOnCheckedChangeListener{group, checkedId ->
@@ -144,6 +143,16 @@ class PictureOfTheDayFragment : Fragment() {
             }
 
         }*/
+    }
+
+    private fun switchNightMode(){
+        requireActivity().findViewById<SwitchMaterial>(R.id.switch_night_mode).setOnCheckedChangeListener{buttonView,isChecked->
+            if (isChecked){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
     }
 
         private fun clickChip(){
