@@ -32,7 +32,7 @@ class ApiBottomActivity :AppCompatActivity() {
         badge.maxCharacterCount= 8  // колличество выводимых знаков
         badge.badgeGravity = BadgeDrawable.BOTTOM_START  // отображение снизу  слева. По умолчанию сверху справа.
         badge.clearNumber() // удаляет все значения, остаётся пустое поле
-       // binding.bottomNavigationView.removeBadge(R.id.action_bottom_view_system)  // удаление badge
+       // binding.bottomNavigationView.removeBadge(R.id.action_bottom_view_system)  // удаление badge//
     }
 
     private fun init(){
