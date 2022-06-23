@@ -39,16 +39,16 @@ class ApiBottomActivity :AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId){
                 R.id.action_bottom_view_earth->{
-                    supportFragmentManager.beginTransaction().replace(R.id.container,EarthFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.container_bottom_navigation_view,EarthFragment()).commit()
                     true
                 }
 
                 R.id.action_bottom_view_mars->{
-                    supportFragmentManager.beginTransaction().replace(R.id.container, MarsFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.container_bottom_navigation_view, MarsFragment()).commit()
                     true
                 }
                 R.id.action_bottom_view_system->{
-                    supportFragmentManager.beginTransaction().replace(R.id.container, SystemFragment()).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.container_bottom_navigation_view, SystemFragment()).commit()
                     true
                 }
             }

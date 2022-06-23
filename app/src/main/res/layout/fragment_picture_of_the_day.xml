@@ -98,6 +98,12 @@
         android:layout_height="match_parent"/>
 </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
        <!-- <RadioGroup
             android:id="@+id/radio_group"

@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.coursematerial.R
+import com.example.coursematerial.view.manyFragments.StartFragment
+import com.example.coursematerial.view.settings.SettingsFragment
 
 class ViewPagerAdapter(private val fragmentManager: FragmentManager): FragmentStatePagerAdapter(fragmentManager) {
 
@@ -16,7 +18,7 @@ class ViewPagerAdapter(private val fragmentManager: FragmentManager): FragmentSt
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when(position){
-            EARTH_FRAGMENT -> "Earth"
+            FIRST_FRAGMENT -> "First"
             MARS_FRAGMENT -> "Mars"
             SYSTEM_FRAGMENT -> "System"
             else -> "Earth"
@@ -24,7 +26,7 @@ class ViewPagerAdapter(private val fragmentManager: FragmentManager): FragmentSt
     }
 
     override fun getItem(position: Int): Fragment {
-            return BaseFragment.newInstance(position)
+            return StartFragment.newInstance(position)
 
     }
 }

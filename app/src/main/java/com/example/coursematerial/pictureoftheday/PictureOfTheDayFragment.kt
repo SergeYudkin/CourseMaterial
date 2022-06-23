@@ -18,7 +18,10 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.annotation.RequiresPermission
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import coil.load
@@ -29,13 +32,19 @@ import com.example.coursematerial.view.MainActivity
 
 import com.example.coursematerial.pictureoftheday.PictureOfTheDayFragment.Companion.newInstance
 import com.example.coursematerial.utils.Parameters
+import com.example.coursematerial.view.api.BaseFragment.Companion.newInstance
+import com.example.coursematerial.view.api.EarthFragment
+import com.example.coursematerial.view.api.MarsFragment
+import com.example.coursematerial.view.api.SystemFragment
 import com.example.coursematerial.view.settings.SettingsFragment
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
+import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.switchmaterial.SwitchMaterial
 import retrofit2.http.Url
+import java.lang.reflect.Array.newInstance
 import java.text.SimpleDateFormat
 
 import java.util.*
@@ -75,7 +84,7 @@ class PictureOfTheDayFragment : Fragment() {
         when(item.itemId){
             R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
             R.id.app_bar_settings -> requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container,SettingsFragment.newInstance()).addToBackStack("").commit()
+                .replace(R.id.container,SettingsFragment.newInstance(-1)).addToBackStack("").commit()
             android.R.id.home-> {
                 BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager,"")
             }
@@ -99,6 +108,7 @@ class PictureOfTheDayFragment : Fragment() {
 
 
     }
+
 
     private fun takeDate(count: Int): String {
         val currentDate = Calendar.getInstance()
@@ -204,12 +214,12 @@ class PictureOfTheDayFragment : Fragment() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when(newState){
 
-                    /*   BottomSheetBehavior.STATE_COLLAPSED -> { TODO() }
-                       BottomSheetBehavior.STATE_DRAGGING -> { TODO() }
-                       BottomSheetBehavior.STATE_EXPANDED -> { TODO() }
-                       BottomSheetBehavior.STATE_HALF_EXPANDED -> { TODO() }
-                       BottomSheetBehavior.STATE_HIDDEN -> { TODO() }
-                       BottomSheetBehavior.STATE_SETTLING -> { TODO() }*/
+                    /*   BottomSheetBehavior.STATE_COLLAPSED -> { TOD() }
+                       BottomSheetBehavior.STATE_DRAGGING -> { TOD() }
+                       BottomSheetBehavior.STATE_EXPANDED -> { TOD() }
+                       BottomSheetBehavior.STATE_HALF_EXPANDED -> { TOD() }
+                       BottomSheetBehavior.STATE_HIDDEN -> { TOD() }
+                       BottomSheetBehavior.STATE_SETTLING -> { TOD() }*/
                 }
             }
 
