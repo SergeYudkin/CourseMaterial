@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.coursematerial.R
-import com.example.coursematerial.view.api.BUNDLE_KEY
-import com.example.coursematerial.view.api.FIRST_FRAGMENT
-import com.example.coursematerial.view.api.MARS_FRAGMENT
-import com.example.coursematerial.view.api.SYSTEM_FRAGMENT
+import com.example.coursematerial.view.api.*
 import com.example.coursematerial.view.settings.SettingsFragment
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
@@ -29,7 +26,7 @@ class StartFragment: Fragment() {
         // ImageView(requireActivity()).setImageResource()
         arguments?.let {
             layout = when (it.getInt(BUNDLE_KEY)) {
-                FIRST_FRAGMENT -> R.layout.fragment_first
+                EARTH_FRAGMENT -> R.layout.fragment_earth
                 MARS_FRAGMENT -> R.layout.fragment_mars
                 SYSTEM_FRAGMENT -> R.layout.fragment_system
                 else -> R.layout.fragment_first

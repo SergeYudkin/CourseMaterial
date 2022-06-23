@@ -19,6 +19,8 @@ import com.example.coursematerial.databinding.FragmentSettingsBinding
 import com.example.coursematerial.view.MainActivity
 import com.example.coursematerial.view.api.*
 import com.example.coursematerial.view.manyFragments.StartFragment
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 import java.util.*
 
@@ -31,22 +33,6 @@ class SettingsFragment : Fragment() {
             return _binding!!
         }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        requireActivity().setContentView(R.layout.fragment_settings)
-
-        if (savedInstanceState==null) {
-            requireActivity().supportFragmentManager.beginTransaction().replace(
-                R.id.settings_container, StartFragment.newInstance(-1)
-            ).commit()
-        }
-        binding.viewPager.adapter = ViewPager2Adapter(this)
-
-
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -55,6 +41,24 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater,container,false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().setContentView(R.layout.fragment_settings)
+
+        if (savedInstanceState==null){
+            requireActivity().supportFragmentManager.beginTransaction().replace(
+                R.id.settings_container,StartFragment.newInstance(0)
+            ).commit()
+        }
+        binding.viewPager.adapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        //binding.viewPager.adapter = ViewPager2Adapter(this)
+
+
+    }
+
+
 
 
     companion object {

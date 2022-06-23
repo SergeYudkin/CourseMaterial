@@ -9,18 +9,18 @@ import com.example.coursematerial.view.settings.SettingsFragment
 
 class ViewPagerAdapter(private val fragmentManager: FragmentManager): FragmentStatePagerAdapter(fragmentManager) {
 
-  //  val fragments = arrayOf(EarthFragment(),MarsFragment(),SystemFragment())
+  // private val fragments = arrayOf(EarthFragment(),MarsFragment(),SystemFragment())
 
     override fun getCount(): Int {
         //return fragments.size
         return ADAPTER_SIZE
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return when(position){
-            FIRST_FRAGMENT -> "First"
-            MARS_FRAGMENT -> "Mars"
-            SYSTEM_FRAGMENT -> "System"
+            /*StartFragment.*/EARTH_FRAGMENT -> "First"
+            /*StartFragment.*/MARS_FRAGMENT -> "Mars"
+           /* StartFragment.*/SYSTEM_FRAGMENT -> "System"
             else -> "Earth"
         }
     }

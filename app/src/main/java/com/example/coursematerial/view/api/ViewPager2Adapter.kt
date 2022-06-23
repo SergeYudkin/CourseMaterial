@@ -17,6 +17,9 @@ class ViewPager2Adapter(private val fragmentManager: Fragment):FragmentStateAdap
 
     override fun createFragment(position: Int): Fragment {
         return StartFragment.newInstance(position)
+
+
+
     }
 
 }
