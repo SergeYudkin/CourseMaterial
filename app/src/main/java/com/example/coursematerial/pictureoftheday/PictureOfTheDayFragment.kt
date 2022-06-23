@@ -84,7 +84,7 @@ class PictureOfTheDayFragment : Fragment() {
         when(item.itemId){
             R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
             R.id.app_bar_settings -> requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container,SettingsFragment.newInstance(-1)).addToBackStack("").commit()
+                .replace(R.id.container,SettingsFragment.newInstance()).addToBackStack("").commit()
             android.R.id.home-> {
                 BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager,"")
             }
