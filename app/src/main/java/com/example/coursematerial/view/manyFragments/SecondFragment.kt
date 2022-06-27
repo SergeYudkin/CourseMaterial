@@ -14,7 +14,7 @@ class SecondFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_earth, container, false)
+        return inflater.inflate(R.layout.fragment_second, container, false)
     }
 
 }

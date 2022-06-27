@@ -2,9 +2,7 @@ package com.example.coursematerial.view.settings
 
 
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
+
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -19,10 +17,7 @@ import com.example.coursematerial.databinding.FragmentSettingsBinding
 import com.example.coursematerial.view.MainActivity
 import com.example.coursematerial.view.api.*
 import com.example.coursematerial.view.manyFragments.StartFragment
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 
-import java.util.*
 
 
 class SettingsFragment : Fragment() {
@@ -40,26 +35,26 @@ class SettingsFragment : Fragment() {
     ): View? {
         _binding = FragmentSettingsBinding.inflate(inflater,container,false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().setContentView(R.layout.fragment_settings)
 
-        if (savedInstanceState==null){
-            requireActivity().supportFragmentManager.beginTransaction().replace(
-                R.id.settings_container,StartFragment.newInstance(0)
-            ).commit()
-        }
+       requireActivity(). supportFragmentManager.beginTransaction()
+           .replace(R.id.settings_container,StartFragment.newInstance(0)).commit()
+
+
+
+
+        /*requireActivity().setContentView(R.layout.fragment_settings)
+
         binding.viewPager.adapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
         binding.tabLayout.setupWithViewPager(binding.viewPager)
-        //binding.viewPager.adapter = ViewPager2Adapter(this)
+        //binding.viewPager.adapter = ViewPager2Adapter(this)*/
 
 
     }
-
-
-
 
     companion object {
         @JvmStatic

@@ -14,7 +14,7 @@ import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
-class FirstFragment: Fragment() {
+class ThirdFragment: Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

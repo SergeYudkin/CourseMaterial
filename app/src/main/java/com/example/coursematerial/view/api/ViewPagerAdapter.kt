@@ -18,10 +18,10 @@ class ViewPagerAdapter(private val fragmentManager: FragmentManager): FragmentSt
 
     override fun getPageTitle(position: Int): CharSequence {
         return when(position){
-            /*StartFragment.*/EARTH_FRAGMENT -> "First"
-            /*StartFragment.*/MARS_FRAGMENT -> "Mars"
-           /* StartFragment.*/SYSTEM_FRAGMENT -> "System"
-            else -> "Earth"
+            /*StartFragment.*/FIRST_FRAGMENT -> "First"
+            /*StartFragment.*/SECOND_FRAGMENT -> "Second"
+           /* StartFragment.*/THIRD_FRAGMENT -> "Third"
+            else -> "First"
         }
     }
 

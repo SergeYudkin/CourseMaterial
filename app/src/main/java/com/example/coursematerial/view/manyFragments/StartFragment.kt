@@ -8,35 +8,59 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.coursematerial.R
+import com.example.coursematerial.databinding.FragmentSettingsBinding
+import com.example.coursematerial.databinding.FragmentStartBinding
 import com.example.coursematerial.view.api.*
 import com.example.coursematerial.view.settings.SettingsFragment
-import com.example.coursematerial.viewmodel.AppState
-import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
-import com.google.android.material.bottomsheet.BottomSheetBehavior
+
 
 class StartFragment: Fragment() {
+
+    private var _binding: FragmentStartBinding? = null
+    private val binding: FragmentStartBinding
+        get() {
+            return _binding!!
+        }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var layout = R.layout.fragment_first
+        _binding = FragmentStartBinding.inflate(inflater,container,false)
+        return binding.root
         //TODO HW избавиться от R.layout.fragment_earth R.layout.fragment_mars R.layout.fragment_system через  .setImageResource()
         // ImageView(requireActivity()).setImageResource()
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+        binding.viewPager.adapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+
+        var layout = R.layout.fragment_first
         arguments?.let {
-            layout = when (it.getInt(BUNDLE_KEY)) {
-                EARTH_FRAGMENT -> R.layout.fragment_earth
-                MARS_FRAGMENT -> R.layout.fragment_mars
-                SYSTEM_FRAGMENT -> R.layout.fragment_system
-                else -> R.layout.fragment_first
+            layout = when(it.getInt(BUNDLE_KEY)){
+                FIRST_FRAGMENT->R.layout.fragment_first
+                SECOND_FRAGMENT->R.layout.fragment_second
+                THIRD_FRAGMENT->R.layout.fragment_third
+                else->R.layout.fragment_first
             }
+
         }
-        return inflater.inflate(layout, container, false)
+
     }
 
 
+
     companion object {
+
+
         @JvmStatic
         fun newInstance(type: Int): Fragment {
             return  StartFragment().apply {
@@ -46,6 +70,11 @@ class StartFragment: Fragment() {
             }
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }
