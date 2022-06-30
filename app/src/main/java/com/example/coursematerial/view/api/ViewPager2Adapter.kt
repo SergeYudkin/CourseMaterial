@@ -9,7 +9,7 @@ import com.example.coursematerial.view.manyFragments.StartFragment
 
 
 
-/*class ViewPager2Adapter(private val fragmentManager: Fragment):FragmentStateAdapter(fragmentManager) {
+class ViewPager2Adapter(private val fragmentManager: Fragment):FragmentStateAdapter(fragmentManager) {
 
     override fun getItemCount(): Int {
         return ADAPTER_SIZE
@@ -23,4 +23,4 @@ import com.example.coursematerial.view.manyFragments.StartFragment
 
     }
 
-}*/
+}
