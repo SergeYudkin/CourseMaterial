@@ -32,6 +32,11 @@ class BaseFragment: Fragment() {
 
 
     companion object {
+
+        internal const val BUNDLE_KEY = "key"
+        internal const val FIRST_FRAGMENT = 0
+        internal const val SECOND_FRAGMENT = 1
+        internal const val THIRD_FRAGMENT = 2
         @JvmStatic
         fun newInstance(type: Int): Fragment {
           return  BaseFragment().apply {

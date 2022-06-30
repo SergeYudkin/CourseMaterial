@@ -11,16 +11,13 @@ import com.example.coursematerial.R
 import com.example.coursematerial.databinding.FragmentSettingsBinding
 import com.example.coursematerial.databinding.FragmentStartBinding
 import com.example.coursematerial.view.api.*
+import com.example.coursematerial.view.api.BaseFragment.Companion.FIRST_FRAGMENT
+import com.example.coursematerial.view.api.BaseFragment.Companion.SECOND_FRAGMENT
+import com.example.coursematerial.view.api.BaseFragment.Companion.THIRD_FRAGMENT
 import com.example.coursematerial.view.settings.SettingsFragment
 
 
 class StartFragment: Fragment() {
-
-    private var _binding: FragmentStartBinding? = null
-    private val binding: FragmentStartBinding
-        get() {
-            return _binding!!
-        }
 
 
     override fun onCreateView(
@@ -28,22 +25,7 @@ class StartFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentStartBinding.inflate(inflater,container,false)
-        return binding.root
-        //TODO HW избавиться от R.layout.fragment_earth R.layout.fragment_mars R.layout.fragment_system через  .setImageResource()
-        // ImageView(requireActivity()).setImageResource()
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-
-        binding.viewPager.adapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
-        binding.tabLayout.setupWithViewPager(binding.viewPager)
-
-        var layout = R.layout.fragment_first
+        var layout = R.layout.fragment_start
         arguments?.let {
             layout = when(it.getInt(BUNDLE_KEY)){
                 FIRST_FRAGMENT->R.layout.fragment_first
@@ -53,12 +35,16 @@ class StartFragment: Fragment() {
             }
 
         }
-
+            return inflater.inflate(layout,container,false)
     }
 
 
-
     companion object {
+
+       internal const val BUNDLE_KEY = "key"
+        internal const val FIRST_FRAGMENT = 0
+        internal const val SECOND_FRAGMENT = 1
+        internal const val THIRD_FRAGMENT = 2
 
 
         @JvmStatic
@@ -72,9 +58,5 @@ class StartFragment: Fragment() {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 
 }

@@ -12,15 +12,15 @@ class ViewPagerAdapter(private val fragmentManager: FragmentManager): FragmentSt
   // private val fragments = arrayOf(EarthFragment(),MarsFragment(),SystemFragment())
 
     override fun getCount(): Int {
-        //return fragments.size
+      //  return fragments.size
         return ADAPTER_SIZE
     }
 
     override fun getPageTitle(position: Int): CharSequence {
         return when(position){
-            /*StartFragment.*/FIRST_FRAGMENT -> "First"
-            /*StartFragment.*/SECOND_FRAGMENT -> "Second"
-           /* StartFragment.*/THIRD_FRAGMENT -> "Third"
+            StartFragment.FIRST_FRAGMENT -> "First"
+            StartFragment.SECOND_FRAGMENT -> "Second"
+            StartFragment.THIRD_FRAGMENT -> "Third"
             else -> "First"
         }
     }
