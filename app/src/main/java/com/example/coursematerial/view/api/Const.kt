@@ -1,5 +1,7 @@
 package com.example.coursematerial.view.api
 
+
+const val baseUrl = "https://api.nasa.gov/"
 const val EARTH_FRAGMENT = 101
 const val MARS_FRAGMENT = 102
 const val SYSTEM_FRAGMENT = 103

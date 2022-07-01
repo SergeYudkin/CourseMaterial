@@ -12,7 +12,11 @@ import com.example.coursematerial.R
 import com.example.coursematerial.databinding.FragmentSettingsBinding
 
 import com.example.coursematerial.view.api.*
+import com.example.coursematerial.view.manyFragments.FirstFragment
+import com.example.coursematerial.view.manyFragments.SecondFragment
 import com.example.coursematerial.view.manyFragments.StartFragment
+import com.example.coursematerial.view.manyFragments.ThirdFragment
+import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -38,9 +42,6 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*binding.viewPager.adapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
-        binding.tabLayout.setupWithViewPager(binding.viewPager)*/
-
         binding.viewPager2.adapter = ViewPager2Adapter(this)
 
         TabLayoutMediator(binding.tabLayout,binding.viewPager2,object : TabLayoutMediator.TabConfigurationStrategy{
@@ -49,7 +50,7 @@ class SettingsFragment : Fragment() {
                     StartFragment.FIRST_FRAGMENT -> "First"
                     StartFragment.SECOND_FRAGMENT -> "Second"
                     StartFragment.THIRD_FRAGMENT -> "Third"
-                    else -> "Earth"
+                    else -> "First"
                 }
 
                 tab.icon = when (position) {
@@ -61,7 +62,42 @@ class SettingsFragment : Fragment() {
             }
         }).attach()
 
+        setupNavigation()
+        init()
     }
+
+    private fun setupNavigation() {
+        binding.bottomNavigationView.selectedItemId = R.id.action_bottom_view_mars
+        val badge = binding.bottomNavigationView.getOrCreateBadge(R.id.action_bottom_view_system)
+        badge.number = 1000
+        badge.maxCharacterCount = 3
+    }
+
+    private fun init() {
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.action_bottom_view_earth -> {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, FirstFragment.newInstance()).addToBackStack("").commit()
+                    true
+                }
+                R.id.action_bottom_view_mars -> {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, SecondFragment.newInstance()).addToBackStack("").commit()
+                    true
+                }
+                R.id.action_bottom_view_system -> {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, ThirdFragment.newInstance()).addToBackStack("").commit()
+                    true
+                }
+                else -> {
+                    true
+                }
+            }
+        }
+    }
+
 
     companion object {
         @JvmStatic

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.coursematerial.R
 import com.example.coursematerial.databinding.FragmentFirstBinding
+import com.example.coursematerial.view.settings.SettingsFragment
 
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
@@ -21,7 +22,14 @@ class ThirdFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_first, container, false)
+        return inflater.inflate(R.layout.fragment_third, container, false)
+    }
+
+
+    companion object {
+        @JvmStatic
+        fun newInstance() =
+            ThirdFragment()
     }
 
 }

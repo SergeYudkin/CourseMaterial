@@ -138,21 +138,6 @@ class PictureOfTheDayFragment : Fragment() {
             requireActivity().recreate()
         }
 
-
-
-
-        /*binding.radioGroup.setOnCheckedChangeListener{group, checkedId ->
-            when(checkedId){
-                R.id.radio_button_blu->{Parameters.getInstance().theme = R.style.MyBlueTheme
-                requireActivity().recreate()}
-                R.id.radio_button_red->{Parameters.getInstance().theme = R.style.MyRedTheme
-                    requireActivity().recreate()}
-                R.id.radio_button_green->{Parameters.getInstance().theme = R.style.MyGreenTheme
-                    requireActivity().recreate()}
-                R.id.radio_button_dark_light-> {requireActivity().setTheme(AppCompatDelegate.MODE_NIGHT_YES)}
-            }
-
-        }*/
     }
 
     private fun switchNightMode(){

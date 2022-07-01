@@ -7,7 +7,9 @@ import retrofit2.http.Query
 
 interface PictureOfTheDayAPI {
     @GET("planetary/apod")
-    fun getPictureOfTheDay(@Query("api_key") apiKey:String):Call<PictureOfTheDayServerResponseData>
+    fun getPictureOfTheDay(
+        @Query("api_key") apiKey:String
+    ):Call<PictureOfTheDayServerResponseData>
 
     @GET("planetary/apod")
     fun getPictureOfTheDay(
@@ -16,18 +18,13 @@ interface PictureOfTheDayAPI {
     ):Call<PictureOfTheDayServerResponseData>
 
 
-
     // Earth Polychromatic Imaging Camera
     @GET("EPIC/api/natural")
     fun getEPIC(
         @Query("api_key") apiKey: String,
-    ): Call<List<PictureOfTheDayServerResponseData>>
+    ): Call<List<EpicServerResponseData>>
 
-    @GET("/mars-photos/api/v1/rovers/curiosity/photos")
-    fun getMarsImageByDate(
-        @Query("earth_date") earth_date: String,
-        @Query("api_key") apiKey: String,
-    ): Call<PictureOfTheDayServerResponseData>
+
 
 
     @GET("DONKI/FLR")
@@ -44,4 +41,25 @@ interface PictureOfTheDayAPI {
         @Query("dim") dim: Float,
         @Query("api_key") apiKey: String
     ): Call<PictureOfTheDayServerResponseData>
+
+
+    @GET("/mars-photos/api/v1/rovers/curiosity/photos")
+    fun getMarsImageByDate(
+        @Query("api_key") apiKey: String
+    ): Call<PictureOfTheDayServerResponseData>
+
+
+    @GET("/mars-photos/api/v1/rovers/curiosity/photos")
+    fun getMarsImageByDateTemp(
+        @Query("earth_date") earth_date: String,
+        @Query("api_key") apiKey: String,
+    ): Call<PictureOfTheDayServerResponseData>
+
+
+
 }
+
+
+
+
+

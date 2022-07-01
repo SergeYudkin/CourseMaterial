@@ -21,3 +21,11 @@ data class PictureOfTheDayServerResponseData(
     @SerializedName("url")
     val url: String
 )
+
+
+data class MarsServerResponseData(
+    @SerializedName("img_src")
+    val imgSrc: String?,
+    @SerializedName("earth_date")
+    val earth_date: String?,
+)
