@@ -50,14 +50,6 @@ class FirstFragment: Fragment() {
 
     }
 
-    /*private fun takeDate(count: Int): String {
-        val currentDate = Calendar.getInstance()
-        currentDate.add(Calendar.DAY_OF_MONTH, count)
-        val format1 = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        format1.timeZone = TimeZone.getTimeZone("EST")
-        return format1.format(currentDate.time)
-    }*/
-
     private fun request(){
         viewModel.getLiveDataForViewToObserve().observe(viewLifecycleOwner) {
             renderData(it)

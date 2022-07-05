@@ -1,15 +1,11 @@
 package com.example.coursematerial.pictureoftheday
 
 
-import android.app.Application
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 
 import android.net.Uri
 import android.util.Log
 import android.os.Bundle
-import android.provider.CalendarContract
 import android.view.*
 import android.widget.Toast
 import android.view.LayoutInflater
@@ -18,11 +14,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
-import androidx.annotation.RequiresPermission
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.coursematerial.R
@@ -30,21 +22,13 @@ import com.example.coursematerial.R.*
 import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
 import com.example.coursematerial.view.MainActivity
 
-import com.example.coursematerial.pictureoftheday.PictureOfTheDayFragment.Companion.newInstance
 import com.example.coursematerial.utils.Parameters
-import com.example.coursematerial.view.api.BaseFragment.Companion.newInstance
-import com.example.coursematerial.view.api.EarthFragment
-import com.example.coursematerial.view.api.MarsFragment
-import com.example.coursematerial.view.api.SystemFragment
 import com.example.coursematerial.view.settings.SettingsFragment
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
-import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.switchmaterial.SwitchMaterial
-import retrofit2.http.Url
-import java.lang.reflect.Array.newInstance
 import java.text.SimpleDateFormat
 
 import java.util.*
@@ -161,7 +145,7 @@ class PictureOfTheDayFragment : Fragment() {
             }
         }
 
-    fun FAB(){
+    private fun FAB(){
         binding.fab.setOnClickListener {
             isMain = !isMain
             if (!isMain) {
@@ -199,12 +183,6 @@ class PictureOfTheDayFragment : Fragment() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when(newState){
 
-                    /*   BottomSheetBehavior.STATE_COLLAPSED -> { TOD() }
-                       BottomSheetBehavior.STATE_DRAGGING -> { TOD() }
-                       BottomSheetBehavior.STATE_EXPANDED -> { TOD() }
-                       BottomSheetBehavior.STATE_HALF_EXPANDED -> { TOD() }
-                       BottomSheetBehavior.STATE_HIDDEN -> { TOD() }
-                       BottomSheetBehavior.STATE_SETTLING -> { TOD() }*/
                 }
             }
 

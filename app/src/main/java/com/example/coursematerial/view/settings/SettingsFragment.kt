@@ -66,6 +66,7 @@ class SettingsFragment : Fragment() {
         init()
     }
 
+
     private fun setupNavigation() {
         binding.bottomNavigationView.selectedItemId = R.id.action_bottom_view_mars
         val badge = binding.bottomNavigationView.getOrCreateBadge(R.id.action_bottom_view_system)
@@ -78,7 +79,7 @@ class SettingsFragment : Fragment() {
             when (it.itemId) {
                 R.id.action_bottom_view_earth -> {
                     requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, FirstFragment.newInstance()).addToBackStack("").commit()
+                        .replace(R.id.container, EarthFragment.newInstance()).addToBackStack("").commit()
                     true
                 }
                 R.id.action_bottom_view_mars -> {

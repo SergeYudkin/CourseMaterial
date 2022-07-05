@@ -17,8 +17,6 @@ class BaseFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var layout = R.layout.fragment_earth
-        //TODO HW избавиться от R.layout.fragment_earth R.layout.fragment_mars R.layout.fragment_system через  .setImageResource()
-       // ImageView(requireActivity()).setImageResource()
         arguments?.let {
             layout = when (it.getInt(BUNDLE_KEY)) {
                 EARTH_FRAGMENT -> R.layout.fragment_earth

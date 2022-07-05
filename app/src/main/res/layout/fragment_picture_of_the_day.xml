@@ -68,35 +68,40 @@
             android:tag="chip3"
             android:text="@string/day_before_yesterday" />
     </com.google.android.material.chip.ChipGroup>
-<LinearLayout
-    android:id="@+id/buttons_style"
-    android:paddingTop="130dp"
-    android:paddingStart="30dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_blu"
-        android:backgroundTint="@color/blue"
+    <LinearLayout
+        android:id="@+id/buttons_style"
+        android:paddingTop="130dp"
+        android:paddingStart="30dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_red"
-        android:backgroundTint="@color/red"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/button_red"
+            android:layout_width="114dp"
+            android:layout_height="80dp"
+            android:src="@drawable/firee" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_green"
-        android:backgroundTint="@color/green"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/button_green"
+            android:layout_width="93dp"
+            android:layout_height="70dp"
+            android:paddingTop="20dp"
+            android:src="@drawable/green" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch_night_mode"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/button_blu"
+            android:layout_width="78dp"
+            android:layout_height="70dp"
+            android:paddingTop="20dp"
+            android:src="@drawable/water" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_night_mode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:id="@+id/bottom_nav"
@@ -105,47 +110,6 @@
         android:layout_height="match_parent"/>
 
 
-       <!-- <RadioGroup
-            android:id="@+id/radio_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:outlineProvider="background"
-            android:paddingStart="110dp"
-            android:paddingTop="120dp"
-            >
-
-            <RadioButton
-                android:id="@+id/radio_button_blu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/blue"
-                android:checked="true"
-                android:clickable="true"
-                android:focusable="true" />
-
-            <RadioButton
-                android:id="@+id/radio_button_red"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/red"
-                tools:ignore="DuplicateSpeakableTextCheck" />
-
-            <RadioButton
-                android:id="@+id/radio_button_green"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/green" />
-
-            <RadioButton
-                android:id="@+id/radio_button_dark_light"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/black" />
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </RadioGroup>-->
 
 
     <com.example.coursematerial.utils.EquilateralImageView

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import com.example.coursematerial.BuildConfig
 import com.example.coursematerial.R
 import com.example.coursematerial.databinding.FragmentFirstBinding
 import com.example.coursematerial.databinding.FragmentSecondBinding
@@ -14,6 +15,7 @@ import com.example.coursematerial.view.settings.SettingsFragment
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.EpicViewModel
 import com.example.coursematerial.viewmodel.MarsViewModel
+import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
 
 class SecondFragment: Fragment() {
 
@@ -32,7 +34,8 @@ class SecondFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_second, container, false)
+        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 
@@ -43,11 +46,12 @@ class SecondFragment: Fragment() {
 
     }
 
-    private fun request(){
+    private fun request() {
         viewModel.getLiveDataForViewToObserve().observe(viewLifecycleOwner) {
             renderData(it)
         }
-        viewModel.sendServerRequest()
+        viewModel.epicSendServerRequest()
+
 
     }
 
@@ -56,12 +60,20 @@ class SecondFragment: Fragment() {
             is AppState.Error -> {}
             is AppState.Loading -> {}
             is AppState.SuccessEpic -> {
-                binding.imageViewSecond.load(appState.epicServerResponseData.image)
+               // binding.imageViewSecond.load(appState.epicServerResponseData.last().identifier)
+                val strDate = appState.epicServerResponseData.last().date.split("").first()
+                val image = appState.epicServerResponseData.last().image
+                val url = "https://api.nasa.gov/EPIC/archive/natural/" +
+                        strDate.replace("-", "/", true) +
+                        "/png/" +
+                        "$image" +
+                        ".png?api_key=${BuildConfig.NASA_API_KEY}"
+                binding.imageViewSecond.load(url)
             }
+
+
         }
     }
-
-
 
 
     override fun onDestroy() {

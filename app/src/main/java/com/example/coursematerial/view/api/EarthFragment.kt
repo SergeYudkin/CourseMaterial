@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.coursematerial.R
+import com.example.coursematerial.view.settings.SettingsFragment
 
 class EarthFragment: Fragment() {
 
@@ -15,6 +16,13 @@ class EarthFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_earth, container, false)
+    }
+
+
+    companion object {
+        @JvmStatic
+        fun newInstance() =
+            EarthFragment()
     }
 
 }

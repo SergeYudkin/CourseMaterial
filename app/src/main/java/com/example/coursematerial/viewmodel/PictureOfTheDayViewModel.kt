@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.coursematerial.BuildConfig
 import com.example.coursematerial.R
-import com.example.coursematerial.model.PictureOfTheDayRetrofitImpl
 import com.example.coursematerial.model.PictureOfTheDayServerResponseData
+import com.example.coursematerial.model.impl.PictureOfTheDayRetrofitImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,7 +29,7 @@ class PictureOfTheDayViewModel(
         }
     }
 
-    fun sendServerRequest(date:String) {
+    fun sendServerRequest(date: String) {
         liveDataForViewToObserve.value = AppState.Loading(0)
         val apiKey: String = BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {

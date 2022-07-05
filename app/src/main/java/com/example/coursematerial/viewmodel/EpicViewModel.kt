@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.coursematerial.BuildConfig
 import com.example.coursematerial.R
 import com.example.coursematerial.model.*
+import com.example.coursematerial.model.impl.EarthEpicRetrofitImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,40 +15,50 @@ import retrofit2.Response
 class EpicViewModel(
 
     private val liveDataForViewToObserve: MutableLiveData<AppState> = MutableLiveData(),
-    private val retrofitImpl: EpicRetrofitImpl = EpicRetrofitImpl()
+    private val eRetrofitImpl: EarthEpicRetrofitImpl = EarthEpicRetrofitImpl()
 ) : ViewModel() {
 
     fun getLiveDataForViewToObserve() = liveDataForViewToObserve
 
-    fun sendServerRequest() {
-        val apiKey: String = BuildConfig.NASA_API_KEY
+    fun epicSendServerRequest() {
+        val apiKey =  BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {
             liveDataForViewToObserve.value = AppState.Error(418)
         } else {
-            retrofitImpl.getEpicImpl().getEPIC(apiKey).enqueue(callback)
+            eRetrofitImpl.getEpicImpl(apiKey,epicCallback)
         }
     }
 
-    private val callback = object : Callback<EpicServerResponseData> {
+    private val epicCallback = object : Callback<List<EarthEpicServerResponseData>> {
         override fun onResponse(
-            call: Call<EpicServerResponseData>,
-            response: Response<EpicServerResponseData>
+            call: Call<List<EarthEpicServerResponseData>>,
+            response: Response<List<EarthEpicServerResponseData>>
         ) {
-            if (response.isSuccessful){
-                response.body()?.let {
-                    liveDataForViewToObserve.postValue(AppState.SuccessEpic(it))
+            if (response.isSuccessful && response.body() !=null){
+                liveDataForViewToObserve.postValue(AppState.SuccessEpic(response.body()!!))
+
+                }else{
+                    val message = response.message()
+                if (message.isNullOrEmpty()){
+                    liveDataForViewToObserve.postValue(AppState.Error(R.string.error_code))
+                }else{
+                    liveDataForViewToObserve.postValue(AppState.Error(R.string.error_code))
+                }
+
                 }
             }
-        }
 
-        override fun onFailure(call: Call<EpicServerResponseData>, t: Throwable) {
+        override fun onFailure(call: Call<List<EarthEpicServerResponseData>>, t: Throwable) {
             liveDataForViewToObserve.postValue(AppState.Error(R.string.error_code))
         }
+    }
+
+
 
     }
 
 
-}
+
 
 
 

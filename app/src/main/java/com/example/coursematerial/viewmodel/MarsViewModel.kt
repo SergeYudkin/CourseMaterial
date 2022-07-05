@@ -1,136 +1,74 @@
 package com.example.coursematerial.viewmodel
 
+import android.os.Build
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.coursematerial.BuildConfig
 import com.example.coursematerial.R
-import com.example.coursematerial.model.PictureOfTheDayRetrofitImpl
+import com.example.coursematerial.model.EarthEpicServerResponseData
+import com.example.coursematerial.model.MarsPhotosServerResponseData
+import com.example.coursematerial.model.MarsServerResponseData
 import com.example.coursematerial.model.PictureOfTheDayServerResponseData
+import com.example.coursematerial.model.impl.EarthEpicRetrofitImpl
+import com.example.coursematerial.model.impl.MarsRetrofitImpl
+import com.example.coursematerial.model.impl.PictureOfTheDayRetrofitImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class MarsViewModel(
 
     private val liveDataForViewToObserve: MutableLiveData<AppState> = MutableLiveData(),
-    private val retrofitImpl: PictureOfTheDayRetrofitImpl = PictureOfTheDayRetrofitImpl()
+    private val marRetrofitImpl: MarsRetrofitImpl = MarsRetrofitImpl()
 ) : ViewModel() {
 
     fun getLiveDataForViewToObserve() = liveDataForViewToObserve
 
-    fun sendServerRequest() {
-        liveDataForViewToObserve.value = AppState.Loading(0)
-        val apiKey: String = BuildConfig.NASA_API_KEY
-        if (apiKey.isBlank()) {
-            liveDataForViewToObserve.value = AppState.Error(418)
-        } else {
-            retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey).enqueue(callback)
-        }
+    fun marsSendServerRequest() {
+        val earthDate = getDayBeforeYesterday()
+        marRetrofitImpl.getMarsPictureByDate(earthDate,BuildConfig.NASA_API_KEY, marsCallback)
     }
 
-    fun sendServerRequest(date: String) {
-        liveDataForViewToObserve.value = AppState.Loading(0)
-        val apiKey: String = BuildConfig.NASA_API_KEY
-        if (apiKey.isBlank()) {
-            liveDataForViewToObserve.value = AppState.Error(418)
-        } else {
-            retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey, date).enqueue(callback)
-        }
-    }
-
-    private val callback = object : Callback<PictureOfTheDayServerResponseData> {
+    private val marsCallback = object : Callback<MarsPhotosServerResponseData> {
         override fun onResponse(
-            call: Call<PictureOfTheDayServerResponseData>,
-            response: Response<PictureOfTheDayServerResponseData>
+            call: Call<MarsPhotosServerResponseData>,
+            response: Response<MarsPhotosServerResponseData>
         ) {
-            if (response.isSuccessful) {
-                response.body()?.let {
-                    liveDataForViewToObserve.postValue(AppState.Success(it))
+            if (response.isSuccessful && response.body() !=null){
+                liveDataForViewToObserve.postValue(AppState.SuccessMars(response.body()!!))
+
+            }else{
+                val message = response.message()
+                if (message.isNullOrEmpty()){
+                    liveDataForViewToObserve.postValue(AppState.Error(R.string.error_code))
+                }else{
+                    liveDataForViewToObserve.postValue(AppState.Error(R.string.error_code))
                 }
-            } else {
-                liveDataForViewToObserve.postValue(AppState.Error(R.string.error_code))
+
             }
         }
 
-        override fun onFailure(call: Call<PictureOfTheDayServerResponseData>, t: Throwable) {
+        override fun onFailure(call: Call<MarsPhotosServerResponseData>, t: Throwable) {
             liveDataForViewToObserve.postValue(AppState.Error(R.string.error_code))
         }
-
     }
 
+    private fun getDayBeforeYesterday(): String {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val yesterday = LocalDateTime.now().minusDays(2)
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            return yesterday.format(formatter)
+        } else {
+            val cal: Calendar = Calendar.getInstance()
+            val s = SimpleDateFormat("yyyy-MM-dd")
+            cal.add(Calendar.DAY_OF_YEAR, -2)
+            return s.format(cal.time)
+        }
+    }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   /* private val liveDataForViewToObserve: MutableLiveData<AppState> = MutableLiveData(),
-    private val marsRetrofitImpl: MarsOfTheDayRetrofitImpl = MarsOfTheDayRetrofitImpl()
-) : ViewModel() {
-
-    fun getLiveDataForViewToObserve() = liveDataForViewToObserve
-
-    fun sendServerRequest() {
-        val apiKey: String = BuildConfig.NASA_API_KEY
-        if (apiKey.isBlank()) {
-            liveDataForViewToObserve.value = AppState.Error(418)
-        } else {
-            marsRetrofitImpl.getMarsRetrofitImpl().getMarsImageByDate(apiKey).enqueue(marsCallback)
-        }
-    }
-
-   /* fun sendServerRequest(date:String) {
-        liveDataForViewToObserve.value = AppState.Loading(0)
-        val apiKey: String = BuildConfig.NASA_API_KEY
-        if (apiKey.isBlank()) {
-            liveDataForViewToObserve.value = AppState.Error(418)
-        } else {
-            marsRetrofitImpl.getMarsRetrofitImpl().getMarsImageByDate(apiKey).enqueue(marsCallback)
-        }
-    }*/
-
-
-
-    private val marsCallback = object : Callback<PictureOfTheDayServerResponseData>{
-        override fun onResponse(
-            call: Call<PictureOfTheDayServerResponseData>,
-            response: Response<PictureOfTheDayServerResponseData>
-        ) {
-            if(response.isSuccessful){
-                response.body()?.let {
-                    liveDataForViewToObserve.postValue(AppState.Success(it))
-                }
-            }else{
-                liveDataForViewToObserve.postValue(AppState.Error(R.string.error_code))
-            }
-        }
-
-        override fun onFailure(call: Call<PictureOfTheDayServerResponseData>, t: Throwable) {
-            liveDataForViewToObserve.postValue(AppState.Error(R.string.error_code))
-        }
-
-    }
-
-
-}*/
