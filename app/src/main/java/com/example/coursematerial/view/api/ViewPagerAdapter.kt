@@ -3,9 +3,7 @@ package com.example.coursematerial.view.api
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.example.coursematerial.R
 import com.example.coursematerial.view.manyFragments.StartFragment
-import com.example.coursematerial.view.settings.SettingsFragment
 
 class ViewPagerAdapter(private val fragmentManager: FragmentManager): FragmentStatePagerAdapter(fragmentManager) {
 

@@ -7,7 +7,6 @@ import com.google.gson.GsonBuilder
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 
 private val marsRetrofit by lazy { Retrofit.Builder().baseUrl(baseUrl)

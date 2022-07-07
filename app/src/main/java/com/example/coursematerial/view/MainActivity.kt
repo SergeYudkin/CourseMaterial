@@ -1,17 +1,11 @@
 package com.example.coursematerial.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.FragmentActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.coursematerial.R
 import com.example.coursematerial.databinding.FragmentSettingsBinding
 import com.example.coursematerial.pictureoftheday.PictureOfTheDayFragment
 import com.example.coursematerial.utils.Parameters
-
-import com.example.coursematerial.view.settings.SettingsFragment
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
-
 
 
 class MainActivity : AppCompatActivity() {

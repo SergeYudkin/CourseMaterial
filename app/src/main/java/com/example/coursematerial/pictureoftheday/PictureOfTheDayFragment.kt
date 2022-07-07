@@ -2,27 +2,24 @@ package com.example.coursematerial.pictureoftheday
 
 
 import android.content.Intent
-
 import android.net.Uri
-import android.util.Log
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
-import android.view.LayoutInflater
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.coursematerial.R
-import com.example.coursematerial.R.*
+import com.example.coursematerial.R.drawable
+import com.example.coursematerial.R.menu
 import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
-import com.example.coursematerial.view.MainActivity
-
 import com.example.coursematerial.utils.Parameters
+import com.example.coursematerial.view.MainActivity
+import com.example.coursematerial.view.manyFragments.behavior.MaterialFragment
 import com.example.coursematerial.view.settings.SettingsFragment
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
@@ -30,7 +27,6 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.switchmaterial.SwitchMaterial
 import java.text.SimpleDateFormat
-
 import java.util.*
 
 class PictureOfTheDayFragment : Fragment() {
@@ -62,15 +58,21 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_bottom_bar,menu)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
+            R.id.app_bar_const -> {requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container,MaterialFragment.newInstance()).addToBackStack("").commit()}
+
+
             R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
-            R.id.app_bar_settings -> requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container,SettingsFragment.newInstance()).addToBackStack("").commit()
+            R.id.app_bar_settings -> {requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container,SettingsFragment.newInstance()).addToBackStack("").commit()}
             android.R.id.home-> {
                 BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager,"")
+
             }
 
 
@@ -169,6 +171,7 @@ class PictureOfTheDayFragment : Fragment() {
 
         }
     }
+
 
     private fun actionBar(){
         (requireActivity() as MainActivity).setSupportActionBar(binding.bottomAppBar)

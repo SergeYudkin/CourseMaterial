@@ -1,7 +1,5 @@
 package com.example.coursematerial.view.manyFragments
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,18 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
-import com.example.coursematerial.R
 import com.example.coursematerial.databinding.FragmentFirstBinding
-
-import com.example.coursematerial.view.MainActivity
-import com.example.coursematerial.view.settings.SettingsFragment
-
 import com.example.coursematerial.viewmodel.AppState
-import com.example.coursematerial.viewmodel.MarsViewModel
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import java.text.SimpleDateFormat
-import java.util.*
 
 class FirstFragment: Fragment() {
 

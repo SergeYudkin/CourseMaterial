@@ -4,19 +4,17 @@ package com.example.coursematerial.view.settings
 
 
 import android.os.Bundle
-import android.view.*
-import android.widget.TableLayout
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.coursematerial.R
-
 import com.example.coursematerial.databinding.FragmentSettingsBinding
-
-import com.example.coursematerial.view.api.*
-import com.example.coursematerial.view.manyFragments.FirstFragment
+import com.example.coursematerial.view.api.EarthFragment
+import com.example.coursematerial.view.api.ViewPager2Adapter
 import com.example.coursematerial.view.manyFragments.SecondFragment
 import com.example.coursematerial.view.manyFragments.StartFragment
 import com.example.coursematerial.view.manyFragments.ThirdFragment
-import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 

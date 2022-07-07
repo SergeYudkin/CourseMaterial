@@ -4,7 +4,6 @@ package com.example.coursematerial.viewmodel
 
 import com.example.coursematerial.model.EarthEpicServerResponseData
 import com.example.coursematerial.model.MarsPhotosServerResponseData
-import com.example.coursematerial.model.MarsServerResponseData
 import com.example.coursematerial.model.PictureOfTheDayServerResponseData
 
 sealed class AppState{

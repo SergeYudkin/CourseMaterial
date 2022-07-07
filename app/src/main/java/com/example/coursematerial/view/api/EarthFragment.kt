@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.coursematerial.R
-import com.example.coursematerial.view.settings.SettingsFragment
 
 class EarthFragment: Fragment() {
 

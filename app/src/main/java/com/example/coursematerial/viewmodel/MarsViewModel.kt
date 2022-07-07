@@ -5,13 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.coursematerial.BuildConfig
 import com.example.coursematerial.R
-import com.example.coursematerial.model.EarthEpicServerResponseData
 import com.example.coursematerial.model.MarsPhotosServerResponseData
-import com.example.coursematerial.model.MarsServerResponseData
-import com.example.coursematerial.model.PictureOfTheDayServerResponseData
-import com.example.coursematerial.model.impl.EarthEpicRetrofitImpl
 import com.example.coursematerial.model.impl.MarsRetrofitImpl
-import com.example.coursematerial.model.impl.PictureOfTheDayRetrofitImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -1,9 +1,7 @@
 package com.example.coursematerial.pictureoftheday
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import com.example.coursematerial.R
 import com.example.coursematerial.databinding.BottomNavigationLayoutBinding
@@ -35,10 +33,11 @@ class BottomNavigationDrawerFragment: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.navigation_one -> Toast.makeText(context, "1", Toast.LENGTH_SHORT).show()
-                R.id.navigation_two -> Toast.makeText(context, "2", Toast.LENGTH_SHORT).show()
+                R.id.navigation_one -> {}
+                R.id.navigation_two -> {}
             }
             true
         }
     }
+
 }

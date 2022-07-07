@@ -7,18 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
-import com.example.coursematerial.BuildConfig
-import com.example.coursematerial.R
-import com.example.coursematerial.databinding.FragmentFirstBinding
-import com.example.coursematerial.databinding.FragmentSecondBinding
 import com.example.coursematerial.databinding.FragmentThirdBinding
-import com.example.coursematerial.view.settings.SettingsFragment
-
 import com.example.coursematerial.viewmodel.AppState
-import com.example.coursematerial.viewmodel.EpicViewModel
 import com.example.coursematerial.viewmodel.MarsViewModel
-import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 
 class ThirdFragment: Fragment() {

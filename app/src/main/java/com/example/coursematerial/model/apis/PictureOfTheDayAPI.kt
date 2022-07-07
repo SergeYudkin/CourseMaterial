@@ -2,7 +2,6 @@ package com.example.coursematerial.model.apis
 
 import com.example.coursematerial.model.EarthEpicServerResponseData
 import com.example.coursematerial.model.MarsPhotosServerResponseData
-import com.example.coursematerial.model.MarsServerResponseData
 import com.example.coursematerial.model.PictureOfTheDayServerResponseData
 import retrofit2.Call
 import retrofit2.http.GET

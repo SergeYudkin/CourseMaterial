@@ -5,17 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import coil.load
 import com.example.coursematerial.R
-import com.example.coursematerial.databinding.FragmentFirstBinding
-import com.example.coursematerial.view.api.*
-import com.example.coursematerial.view.api.BaseFragment.Companion.FIRST_FRAGMENT
-import com.example.coursematerial.view.api.BaseFragment.Companion.SECOND_FRAGMENT
-import com.example.coursematerial.view.api.BaseFragment.Companion.THIRD_FRAGMENT
-import com.example.coursematerial.view.settings.SettingsFragment
-import com.example.coursematerial.viewmodel.AppState
-import com.example.coursematerial.viewmodel.MarsViewModel
 
 
 class StartFragment: Fragment() {

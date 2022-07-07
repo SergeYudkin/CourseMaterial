@@ -3,12 +3,11 @@ package com.example.coursematerial.view.api_bottom
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coursematerial.R
-import com.example.coursematerial.databinding.ActivityApiBinding
 import com.example.coursematerial.databinding.ActivityApiBottomBinding
-import com.example.coursematerial.view.api.*
+import com.example.coursematerial.view.api.EarthFragment
+import com.example.coursematerial.view.api.MarsFragment
+import com.example.coursematerial.view.api.SystemFragment
 import com.google.android.material.badge.BadgeDrawable
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 
 class ApiBottomActivity :AppCompatActivity() {
 

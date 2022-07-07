@@ -2,10 +2,7 @@ package com.example.coursematerial.view.api
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.coursematerial.R
 import com.example.coursematerial.databinding.ActivityApiBinding
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 
 class ApiActivity :AppCompatActivity() {
 
