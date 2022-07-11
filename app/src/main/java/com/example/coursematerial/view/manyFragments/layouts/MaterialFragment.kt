@@ -1,4 +1,4 @@
-package com.example.coursematerial.view.manyFragments.behavior
+package com.example.coursematerial.view.manyFragments.layouts
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -43,7 +43,7 @@ class MaterialFragment: Fragment() {
                     true
                 }
                 R.id.action_coordinator -> {
-                    //navigationTo(CoordinatorFragment())
+                    navigationTo(CoordinatorFragment())
                     true
                 }
                 R.id.action_motion -> {
@@ -53,7 +53,7 @@ class MaterialFragment: Fragment() {
                 else -> true
             }
         }
-        binding.bottomNavigationView.selectedItemId = R.id.action_constraint
+        binding.bottomNavigationView.selectedItemId = R.id.action_coordinator
 
 
     }

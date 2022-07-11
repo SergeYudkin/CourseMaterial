@@ -19,7 +19,7 @@ import com.example.coursematerial.R.menu
 import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
 import com.example.coursematerial.utils.Parameters
 import com.example.coursematerial.view.MainActivity
-import com.example.coursematerial.view.manyFragments.behavior.MaterialFragment
+import com.example.coursematerial.view.manyFragments.layouts.MaterialFragment
 import com.example.coursematerial.view.settings.SettingsFragment
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel
@@ -64,7 +64,7 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.app_bar_const -> {requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container,MaterialFragment.newInstance()).addToBackStack("").commit()}
+                .replace(R.id.container, MaterialFragment.newInstance()).addToBackStack("").commit()}
 
 
             R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()

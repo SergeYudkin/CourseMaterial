@@ -20,6 +20,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.65" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_h3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_v1"
@@ -44,11 +51,18 @@
 
     </androidx.constraintlayout.widget.Guideline>
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="button_one,button_two" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="button1"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/guideline_h1"
         app:layout_constraintEnd_toStartOf="@+id/guideline_v1"
         app:layout_constraintStart_toStartOf="@+id/guideline_v1"
@@ -59,6 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="button2"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/guideline_h1"
         app:layout_constraintEnd_toStartOf="@+id/guideline_v3"
         app:layout_constraintStart_toStartOf="@+id/guideline_v3"
