@@ -7,9 +7,40 @@
 
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_h1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_h2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_v1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_v2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_v3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75">
 
     </androidx.constraintlayout.widget.Guideline>
 
@@ -18,29 +49,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="button1"
-        app:layout_constraintBottom_toTopOf="@+id/button_two"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_h1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_v1"
+        app:layout_constraintStart_toStartOf="@+id/guideline_v1"
+        app:layout_constraintTop_toTopOf="@+id/guideline_h1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="button2"
-        app:layout_constraintBottom_toTopOf="@+id/button_three"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_one" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_h1"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_v3"
+        app:layout_constraintStart_toStartOf="@+id/guideline_v3"
+        app:layout_constraintTop_toTopOf="@+id/guideline_h1" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_three"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="button3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_two" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_h2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_v2"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toStartOf="@+id/guideline_v2"
+        app:layout_constraintTop_toTopOf="@+id/guideline_h2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
