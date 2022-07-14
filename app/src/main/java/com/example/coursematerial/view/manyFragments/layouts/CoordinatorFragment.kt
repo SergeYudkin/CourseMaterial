@@ -1,5 +1,6 @@
 package com.example.coursematerial.view.manyFragments.layouts
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.coursematerial.databinding.FragmentCoordinatorBinding
 
 
-class CoordinatorFragment: Fragment() {
+class CoordinatorFragment :Fragment(){
 
     private var _binding : FragmentCoordinatorBinding? = null
     private val binding : FragmentCoordinatorBinding
@@ -28,7 +29,7 @@ class CoordinatorFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+     //   (binding.buttone.layoutParams as CoordinatorLayout.LayoutParams).behavior = MyBehavior(requireContext())
 
     }
 
@@ -40,7 +41,7 @@ class CoordinatorFragment: Fragment() {
 
     companion object{
         @JvmStatic
-        fun newInstance() = CoordinatorFragment
+        fun newInstance() = CoordinatorFragment()
     }
 
 }
