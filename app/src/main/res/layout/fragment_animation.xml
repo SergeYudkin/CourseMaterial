@@ -9,20 +9,12 @@
     android:layout_height="match_parent">
 
 
-   <androidx.appcompat.widget.AppCompatButton
-       android:id="@+id/animateButtonOne"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="animate"/>
-
-
-   <androidx.appcompat.widget.AppCompatTextView
-       android:id="@+id/animateText"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="16dp"
-       android:text="Transition example"
-       android:visibility="gone"/>
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recyclerView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+      app:spanCount="4"/>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
