@@ -59,7 +59,7 @@ class MaterialFragment: Fragment() {
     }
 
     private fun navigationTo(f: Fragment) {
-        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container, f).commit()
+        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.material_container, f).commit()
     }
 
 

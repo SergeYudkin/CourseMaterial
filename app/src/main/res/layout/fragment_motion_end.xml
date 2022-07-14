@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.65" />
+        app:layout_constraintGuide_begin="475dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_h3"
@@ -63,30 +63,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="button1"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_h1"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_h2"
         app:layout_constraintEnd_toStartOf="@+id/guideline_v3"
         app:layout_constraintStart_toStartOf="@+id/guideline_v3"
-        app:layout_constraintTop_toTopOf="@+id/guideline_h1" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_h2" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="button2"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_h1"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_h2"
         app:layout_constraintEnd_toStartOf="@+id/guideline_v1"
         app:layout_constraintStart_toStartOf="@+id/guideline_v1"
-        app:layout_constraintTop_toTopOf="@+id/guideline_h1" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_h2" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_three"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="button3"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_h2"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_h1"
         app:layout_constraintEnd_toStartOf="@+id/guideline_v2"
         app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="@+id/guideline_v2"
-        app:layout_constraintTop_toTopOf="@+id/guideline_h2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_h1" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
