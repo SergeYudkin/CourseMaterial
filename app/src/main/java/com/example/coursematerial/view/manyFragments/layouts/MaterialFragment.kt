@@ -47,13 +47,13 @@ class MaterialFragment: Fragment() {
                     true
                 }
                 R.id.action_motion -> {
-                    //navigationTo(MotionFragment())
+                    navigationTo(MotionFragment())
                     true
                 }
                 else -> true
             }
         }
-        binding.bottomNavigationView.selectedItemId = R.id.action_coordinator
+        binding.bottomNavigationView.selectedItemId = R.id.action_motion
 
 
     }
