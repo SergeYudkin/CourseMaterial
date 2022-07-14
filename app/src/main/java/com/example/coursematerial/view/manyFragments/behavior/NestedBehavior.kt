@@ -9,7 +9,7 @@ import com.example.coursematerial.R
 import com.google.android.material.appbar.AppBarLayout
 
 
-/*class NestedBehavior(context: Context, attrs: AttributeSet?=null): CoordinatorLayout.Behavior<NestedScrollView>(context, attrs) {
+class NestedBehavior(context: Context, attrs: AttributeSet?=null): CoordinatorLayout.Behavior<NestedScrollView>(context, attrs) {
 
     override fun layoutDependsOn(
         parent: CoordinatorLayout,
@@ -31,4 +31,4 @@ import com.google.android.material.appbar.AppBarLayout
         return super.onDependentViewChanged(parent, child, dependency)
     }
 
-}*/
+}

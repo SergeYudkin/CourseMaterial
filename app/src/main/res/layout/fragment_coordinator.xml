@@ -5,9 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:fitsSystemWindows="true">
+
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/color_gray"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:toolbarId="@+id/toolbar">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:layout_collapseMode="pin"
+                    />
 
 
 
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior=".view.manyFragments.behavior.NestedBehavior"
+        tools:context=".ScrollingActivity">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/large_text" />
+
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_one"
@@ -16,21 +56,8 @@
         android:text="button1"
         app:layout_behavior=".view.manyFragments.behavior.MyBehaviorButtonOne" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="button2"
-        app:layout_behavior=".view.manyFragments.behavior.MyBehaviorButtonSecond" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_third"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="button3"
-        app:layout_behavior=".view.manyFragments.behavior.MyBehaviorButtonThird"
-
-        />
+    <!-- app:layout_anchor="@id/appBar"
+           app:layout_anchorGravity="bottom|end"-->
 
 <androidx.constraintlayout.widget.ConstraintLayout
 

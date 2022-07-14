@@ -9,7 +9,7 @@ import com.example.coursematerial.R
 import com.google.android.material.appbar.AppBarLayout
 
 
-class MyBehaviorButtonThird(context: Context, attrs: AttributeSet?=null): CoordinatorLayout.Behavior<Button>(context, attrs) {
+/*class MyBehaviorButtonThird(context: Context, attrs: AttributeSet?=null): CoordinatorLayout.Behavior<Button>(context, attrs) {
 
     override fun layoutDependsOn(
         parent: CoordinatorLayout,
@@ -32,4 +32,4 @@ class MyBehaviorButtonThird(context: Context, attrs: AttributeSet?=null): Coordi
         return super.onDependentViewChanged(parent, child, dependency)
     }
 
-}
+}*/

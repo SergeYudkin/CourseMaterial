@@ -6,6 +6,7 @@ import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.example.coursematerial.R
 import com.google.android.material.appbar.AppBarLayout
+import kotlin.math.abs
 
 
 class MyBehaviorButtonOne(context: Context, attrs: AttributeSet?=null): CoordinatorLayout.Behavior<View>(context, attrs) {
@@ -15,7 +16,8 @@ class MyBehaviorButtonOne(context: Context, attrs: AttributeSet?=null): Coordina
         child: View,
         dependency: View
     ): Boolean {
-        return (dependency.id == R.id.bottomSheetContainer)
+        //return (dependency.id == R.id.bottomSheetContainer)
+        return dependency is AppBarLayout
     }
 
     override fun onDependentViewChanged(
@@ -23,8 +25,11 @@ class MyBehaviorButtonOne(context: Context, attrs: AttributeSet?=null): Coordina
         child: View,
         dependency: View
     ): Boolean {
-        if (dependency.id == R.id.bottomSheetContainer){
-            child.y = dependency.y - 200
+        if (dependency is AppBarLayout){
+            child.y = dependency.y + dependency.height-child.height/2
+            child.x =(dependency.width - child.width).toFloat()
+
+            child.alpha = 1 - (abs(dependency.y)/(dependency.height/2))
 
         }
         return super.onDependentViewChanged(parent, child, dependency)
