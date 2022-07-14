@@ -1,15 +1,13 @@
 package com.example.coursematerial.animation
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.transition.ChangeBounds
-import androidx.transition.Fade
-import androidx.transition.TransitionManager
-import androidx.transition.TransitionSet
+import androidx.transition.*
 import coil.load
 import com.example.coursematerial.BuildConfig
 import com.example.coursematerial.databinding.FragmentAnimationBinding
@@ -44,11 +42,15 @@ class AnimationFragment: Fragment() {
             isFlagAnimation = !isFlagAnimation
 
             val myAutoTransition = TransitionSet()
-            myAutoTransition.ordering = TransitionSet.ORDERING_TOGETHER
+            //myAutoTransition.ordering = TransitionSet.ORDERING_TOGETHER
+            myAutoTransition.ordering = TransitionSet.ORDERING_SEQUENTIAL
 
-            val fade = Fade()
+            val slide = Slide(Gravity.END)
+            slide.duration = 800L
             val changeBounds = ChangeBounds()
-            myAutoTransition.addTransition(fade)
+            changeBounds.duration = 400L
+           // myAutoTransition.duration = 1500L  весь сет 1,5 секунды
+            myAutoTransition.addTransition(slide)
             myAutoTransition.addTransition(changeBounds)
 
             TransitionManager.beginDelayedTransition(binding.transitionContainer,myAutoTransition)
