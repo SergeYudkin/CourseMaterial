@@ -2,10 +2,12 @@ package com.example.coursematerial.animation
 
 import android.graphics.Rect
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
@@ -32,18 +34,36 @@ class AnimationFragment: Fragment() {
         return binding.root
 
     }
-        var isFlagAnimation = false
+        var isFlagAnimation = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.imageViewAnimation.setOnClickListener{
+        binding.buttonAnimation.setOnClickListener{
             isFlagAnimation = !isFlagAnimation
 
-            val params = it.layoutParams as LinearLayout.LayoutParams
+            val params = it.layoutParams as FrameLayout.LayoutParams
+
+            val changeBounds = ChangeBounds()
+            changeBounds.duration = 2000L
+            changeBounds.setPathMotion(ArcMotion())
+
+            TransitionManager.beginDelayedTransition(binding.root,changeBounds)
+            if (isFlagAnimation){
+                params.gravity = Gravity.TOP or Gravity.START
+
+            }else{
+                params.gravity = Gravity.BOTTOM or Gravity.END
+            }
+            it.layoutParams = params
 
 
-            val transitionSet = TransitionSet()
+
+
+
+
+
+           /* val transitionSet = TransitionSet()
             val changeImageTransform = ChangeImageTransform()
             val changeBounds = ChangeBounds()
             changeBounds.duration = 2000L
@@ -52,15 +72,8 @@ class AnimationFragment: Fragment() {
 
             transitionSet.addTransition(changeBounds)   // важен порядок выполнения
                 transitionSet.addTransition(changeImageTransform)
-                TransitionManager.beginDelayedTransition(binding.root,transitionSet)
-            if (isFlagAnimation){
-                params.height = LinearLayout.LayoutParams.MATCH_PARENT
-                (it as ImageView).scaleType = ImageView.ScaleType.CENTER_CROP      // можно так записать
-            }else{
-                params.height = LinearLayout.LayoutParams.WRAP_CONTENT
-                binding.imageViewAnimation.scaleType = ImageView.ScaleType.CENTER_INSIDE  // или так
-            }
-            it.layoutParams = params
+                TransitionManager.beginDelayedTransition(binding.root,transitionSet)*/
+
         }
 
 
