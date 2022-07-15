@@ -7,19 +7,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnticipateOvershootInterpolator
 import android.widget.*
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.fragment.app.Fragment
+import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
+import com.example.coursematerial.R
 import com.example.coursematerial.databinding.FragmentAnimationBinding
+import com.example.coursematerial.databinding.FragmentAnimationStartBinding
 
 
 class AnimationFragment: Fragment() {
 
-    private var _binding: FragmentAnimationBinding? = null
-    private val binding: FragmentAnimationBinding
+    private var _binding: FragmentAnimationStartBinding? = null
+    private val binding: FragmentAnimationStartBinding
         get() {
             return _binding!!
         }
@@ -29,22 +34,42 @@ class AnimationFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAnimationBinding.inflate(inflater, container, false)
+        _binding = FragmentAnimationStartBinding.inflate(inflater, container, false)
         return binding.root
 
 
     }
         private var isFlagAnimation = false
-        var duration = 2000L
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val constraintSetStart = ConstraintSet()
+        val constraintSetEnd = ConstraintSet()
+        //constraintSetStart.clone(binding.constraintContainer)
+        constraintSetStart.clone(context, R.layout.fragment_animation_start)
+        constraintSetEnd.clone(context, R.layout.fragment_animation_end)
 
-        binding.scrollView.setOnScrollChangeListener { _, _, _, _, _ ->
-            binding.header.isSelected = binding.scrollView.canScrollVertically(-1)
+
+
+        binding.tap.setOnClickListener{
+            isFlagAnimation = !isFlagAnimation
+
+            val changeBounds = ChangeBounds()
+            changeBounds.duration = 1100L
+            changeBounds.interpolator =  AnticipateOvershootInterpolator(5.0f)
+            TransitionManager.beginDelayedTransition(binding.constraintContainer,changeBounds)
+
+
+            if (isFlagAnimation){
+
+                constraintSetEnd.applyTo(binding.constraintContainer)
+
+            }else{
+                constraintSetStart.applyTo(binding.constraintContainer)
+            }
         }
-
 
     }
 
