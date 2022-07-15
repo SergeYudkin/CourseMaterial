@@ -45,11 +45,11 @@ class AnimationFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val constraintSetStart = ConstraintSet()
-        val constraintSetEnd = ConstraintSet()
+        val constraintSet = ConstraintSet()
+
         //constraintSetStart.clone(binding.constraintContainer)
-        constraintSetStart.clone(context, R.layout.fragment_animation_start)
-        constraintSetEnd.clone(context, R.layout.fragment_animation_end)
+        constraintSet.clone(context, R.layout.fragment_animation_start)
+
 
 
 
@@ -64,11 +64,13 @@ class AnimationFragment: Fragment() {
 
             if (isFlagAnimation){
 
-                constraintSetEnd.applyTo(binding.constraintContainer)
+                constraintSet.connect(R.id.title,ConstraintSet.END,R.id.backgroundImage,ConstraintSet.END)
+                //constraintSet.clear(R.id.title,ConstraintSet.END)
 
             }else{
-                constraintSetStart.applyTo(binding.constraintContainer)
+                constraintSet.connect(R.id.title,ConstraintSet.END,R.id.backgroundImage,ConstraintSet.START)
             }
+            constraintSet.applyTo(binding.constraintContainer)
         }
 
     }
