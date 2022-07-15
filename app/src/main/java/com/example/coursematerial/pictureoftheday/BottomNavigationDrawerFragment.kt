@@ -2,11 +2,10 @@ package com.example.coursematerial.pictureoftheday
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import com.example.coursematerial.R
 import com.example.coursematerial.animation.AnimationFragment
+import com.example.coursematerial.animation.PausePlayFragment
 import com.example.coursematerial.databinding.BottomNavigationLayoutBinding
-import com.example.coursematerial.view.manyFragments.layouts.MaterialFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomNavigationDrawerFragment: BottomSheetDialogFragment() {
@@ -47,7 +46,10 @@ class BottomNavigationDrawerFragment: BottomSheetDialogFragment() {
                         .replace(R.id.container,AnimationFragment.newInstance()).addToBackStack("").commit()
 
                 }
-                R.id.navigation_two -> {}
+                R.id.navigation_two -> {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container,PausePlayFragment.newInstance()).addToBackStack("").commit()
+                }
             }
             true
         }

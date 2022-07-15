@@ -1,4 +1,4 @@
-package com.example.coursematerial.view.manyFragments.layouts
+package com.example.coursematerial.view.manyfragments.layouts
 
 
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.coursematerial.databinding.FragmentCoordinatorBinding
 import com.example.coursematerial.databinding.FragmentMotionStartBinding
 
 

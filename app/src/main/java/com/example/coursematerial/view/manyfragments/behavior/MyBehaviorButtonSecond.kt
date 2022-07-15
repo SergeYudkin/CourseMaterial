@@ -1,4 +1,4 @@
-package com.example.coursematerial.view.manyFragments.behavior
+package com.example.coursematerial.view.manyfragments.behavior
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Button
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.example.coursematerial.R
-import com.google.android.material.appbar.AppBarLayout
 
 
 class MyBehaviorButtonSecond(context: Context, attrs: AttributeSet?=null): CoordinatorLayout.Behavior<Button>(context, attrs) {

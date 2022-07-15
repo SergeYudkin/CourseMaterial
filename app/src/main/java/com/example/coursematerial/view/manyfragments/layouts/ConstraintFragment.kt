@@ -1,18 +1,17 @@
-package com.example.coursematerial.view.manyFragments.layouts
-
+package com.example.coursematerial.view.manyfragments.layouts
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.coursematerial.databinding.FragmentCoordinatorBinding
+import com.example.coursematerial.databinding.FragmentConstreintBinding
 
 
-class CoordinatorFragment :Fragment(){
+class ConstraintFragment: Fragment() {
 
-    private var _binding : FragmentCoordinatorBinding? = null
-    private val binding : FragmentCoordinatorBinding
+    private var _binding : FragmentConstreintBinding? = null
+    private val binding : FragmentConstreintBinding
         get(){
             return _binding!!
         }
@@ -22,14 +21,19 @@ class CoordinatorFragment :Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentCoordinatorBinding.inflate(inflater,container,false)
+        _binding = FragmentConstreintBinding.inflate(inflater,container,false)
         return binding.root
     }
 
+    var flag = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.buttonThree.setOnClickListener {
+            flag = !flag
+            binding.groupOne.visibility = if (flag) View.VISIBLE else View.INVISIBLE
+        }
     }
 
 
@@ -40,7 +44,7 @@ class CoordinatorFragment :Fragment(){
 
     companion object{
         @JvmStatic
-        fun newInstance() = CoordinatorFragment()
+        fun newInstance() = ConstraintFragment
     }
 
 }

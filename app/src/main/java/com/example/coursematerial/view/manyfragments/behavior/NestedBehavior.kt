@@ -1,11 +1,10 @@
-package com.example.coursematerial.view.manyFragments.behavior
+package com.example.coursematerial.view.manyfragments.behavior
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.NestedScrollView
-import com.example.coursematerial.R
 import com.google.android.material.appbar.AppBarLayout
 
 

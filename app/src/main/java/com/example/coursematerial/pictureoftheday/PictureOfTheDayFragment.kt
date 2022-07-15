@@ -19,7 +19,7 @@ import com.example.coursematerial.R.menu
 import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
 import com.example.coursematerial.utils.Parameters
 import com.example.coursematerial.view.MainActivity
-import com.example.coursematerial.view.manyFragments.layouts.MaterialFragment
+import com.example.coursematerial.view.manyfragments.layouts.MaterialFragment
 import com.example.coursematerial.view.settings.SettingsFragment
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.PictureOfTheDayViewModel

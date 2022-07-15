@@ -1,4 +1,4 @@
-package com.example.coursematerial.view.manyFragments.layouts
+package com.example.coursematerial.view.manyfragments.layouts
 
 import android.os.Bundle
 import android.view.LayoutInflater

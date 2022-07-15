@@ -38,7 +38,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior=".view.manyFragments.behavior.NestedBehavior"
+        app:layout_behavior=".view.manyfragments.behavior.NestedBehavior"
         tools:context=".ScrollingActivity">
 
 
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="button1"
-        app:layout_behavior=".view.manyFragments.behavior.MyBehaviorButtonOne" />
+        app:layout_behavior=".view.manyfragments.behavior.MyBehaviorButtonOne" />
 
     <!-- app:layout_anchor="@id/appBar"
            app:layout_anchorGravity="bottom|end"-->
