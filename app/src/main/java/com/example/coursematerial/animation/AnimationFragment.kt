@@ -40,69 +40,9 @@ class AnimationFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val titles: MutableList<String> = ArrayList()
-        for (i in 0..4) {
-            titles.add("Item $i")
-        }
 
-
-        binding.fab.setOnClickListener{
-            isFlagAnimation = !isFlagAnimation
-
-            if (isFlagAnimation){
-                ObjectAnimator.ofFloat(binding.plusImageview,View.ROTATION, 0f,675f).setDuration(duration).start()
-                ObjectAnimator.ofFloat(binding.optionOneContainer,View.TRANSLATION_Y, -140f).setDuration(duration).start()
-                ObjectAnimator.ofFloat(binding.optionTwoContainer,View.TRANSLATION_Y, -250f).setDuration(duration).start()
-                ObjectAnimator.ofFloat(binding.transparentBackground,View.ALPHA,0.5f).setDuration(duration).start()
-
-                binding.optionOneContainer.animate().alpha(1f).setDuration(duration).setListener(
-                    object : AnimatorListenerAdapter(){
-                        override fun onAnimationEnd(animation: Animator){
-                            binding.optionOneContainer.isClickable = true
-
-                        }
-                    }
-                )
-
-                binding.optionTwoContainer.animate().alpha(1f).setDuration(duration).setListener(
-                    object : AnimatorListenerAdapter(){
-                        override fun onAnimationEnd(animation: Animator){
-                            binding.optionTwoContainer.isClickable = true
-
-                        }
-                    }
-                )
-
-            }else{
-                ObjectAnimator.ofFloat(binding.plusImageview,View.ROTATION, 675f,0f).setDuration(duration).start()
-                ObjectAnimator.ofFloat(binding.optionOneContainer,View.TRANSLATION_Y, 0f).setDuration(duration).start()
-                ObjectAnimator.ofFloat(binding.optionTwoContainer,View.TRANSLATION_Y, 0f).setDuration(duration).start()
-                ObjectAnimator.ofFloat(binding.transparentBackground,View.ALPHA,0f).setDuration(duration).start()
-
-                binding.optionOneContainer.animate().alpha(0f).setDuration(duration).setListener(
-                    object : AnimatorListenerAdapter(){
-                        override fun onAnimationEnd(animation: Animator){
-                            binding.optionOneContainer.isClickable = false
-
-                        }
-                    }
-                )
-
-                binding.optionTwoContainer.animate().alpha(0f).setDuration(duration).setListener(
-                    object : AnimatorListenerAdapter(){
-                        override fun onAnimationEnd(animation: Animator){
-                            binding.optionTwoContainer.isClickable = false
-
-                        }
-                    }
-                )
-            }
-
-
-
-
-
-
+        binding.scrollView.setOnScrollChangeListener { _, _, _, _, _ ->
+            binding.header.isSelected = binding.scrollView.canScrollVertically(-1)
         }
 
 
