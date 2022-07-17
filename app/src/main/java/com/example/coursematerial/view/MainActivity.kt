@@ -2,6 +2,7 @@ package com.example.coursematerial.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.transition.TransitionManager
 import com.example.coursematerial.R
 import com.example.coursematerial.databinding.FragmentSettingsBinding
 import com.example.coursematerial.pictureoftheday.PictureOfTheDayFragment
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if(savedInstanceState==null){
+
             supportFragmentManager.beginTransaction().replace(R.id.container,
                 PictureOfTheDayFragment.newInstance()).commit()
 

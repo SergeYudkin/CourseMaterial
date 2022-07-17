@@ -2,12 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="none">
         <item
-            android:id="@+id/navigation_one"
+            android:id="@+id/navigationOne"
             android:icon="@android:drawable/star_on"
-            android:title="Animation" />
+            android:title="Mars" />
         <item
-            android:id="@+id/navigation_two"
+            android:id="@+id/navigationTwo"
             android:icon="@android:drawable/star_on"
             android:title="Play/Pause" />
+
+        <item
+            android:id="@+id/navigationThird"
+            android:icon="@android:drawable/star_on"
+            android:title="Explode" />
+        <item
+            android:id="@+id/blockFour"
+            android:icon="@android:drawable/star_on"
+            android:title="Block four" />
+        <item
+            android:id="@+id/mix"
+            android:icon="@android:drawable/star_on"
+            android:title="Mix" />
+        <item
+            android:id="@+id/elevation"
+            android:icon="@android:drawable/star_on"
+            android:title="Elevation" />
     </group>
 </menu>

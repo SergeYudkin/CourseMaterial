@@ -9,9 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.coursematerial.R
+import com.example.coursematerial.animation.PausePlayFragment.Companion.newInstance
 import com.example.coursematerial.databinding.FragmentSettingsBinding
 
 import com.example.coursematerial.view.api.EarthFragment
+import com.example.coursematerial.view.api.MarsFragment
+import com.example.coursematerial.view.api.SystemFragment
 import com.example.coursematerial.view.api.ViewPager2Adapter
 import com.example.coursematerial.view.manyfragments.SecondFragment
 import com.example.coursematerial.view.manyfragments.StartFragment
@@ -83,12 +86,12 @@ class SettingsFragment : Fragment() {
                 }
                 R.id.action_bottom_view_mars -> {
                     requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, SecondFragment.newInstance()).addToBackStack("").commit()
+                        .replace(R.id.container, MarsFragment.newInstance()).addToBackStack("").commit()
                     true
                 }
                 R.id.action_bottom_view_system -> {
                     requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, ThirdFragment.newInstance()).addToBackStack("").commit()
+                        .replace(R.id.container, SystemFragment.newInstance()).addToBackStack("").commit()
                     true
                 }
                 else -> {

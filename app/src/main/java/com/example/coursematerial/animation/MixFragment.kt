@@ -5,18 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnticipateOvershootInterpolator
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
 import com.example.coursematerial.R
 import com.example.coursematerial.databinding.FragmentAnimationStartBinding
+import com.example.coursematerial.databinding.FragmentMixBinding
+import java.util.ArrayList
 
 
-class AnimationFragment: Fragment() {
+class MixFragment: Fragment() {
 
-    private var _binding: FragmentAnimationStartBinding? = null
-    private val binding: FragmentAnimationStartBinding
+    private var _binding: FragmentMixBinding? = null
+    private val binding: FragmentMixBinding
         get() {
             return _binding!!
         }
@@ -26,43 +30,37 @@ class AnimationFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAnimationStartBinding.inflate(inflater, container, false)
+        _binding = FragmentMixBinding.inflate(inflater, container, false)
         return binding.root
 
 
     }
         private var isFlagAnimation = false
+            var duration = 1000L
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val constraintSet = ConstraintSet()
-
-        //constraintSetStart.clone(binding.constraintContainer)
-        constraintSet.clone(context, R.layout.fragment_animation_start)
-
-
+        val titles: MutableList<String> = ArrayList()
+        for (i in 0..20){
+            titles.add("item $i")
+        }
 
 
-        binding.tap.setOnClickListener{
+        binding.button.setOnClickListener{
             isFlagAnimation = !isFlagAnimation
 
-            val changeBounds = ChangeBounds()
-            changeBounds.duration = 1100L
-            changeBounds.interpolator =  AnticipateOvershootInterpolator(5.0f)
-            TransitionManager.beginDelayedTransition(binding.constraintContainer,changeBounds)
+            TransitionManager.beginDelayedTransition(binding.root)
+            binding.transitionsContainer.removeAllViews()
 
-
-            if (isFlagAnimation){
-
-                constraintSet.connect(R.id.title,ConstraintSet.END,R.id.backgroundImage,ConstraintSet.END)
-                //constraintSet.clear(R.id.title,ConstraintSet.END)
-
-            }else{
-                constraintSet.connect(R.id.title,ConstraintSet.END,R.id.backgroundImage,ConstraintSet.START)
+            titles.shuffle()
+            titles.forEach {
+                binding.transitionsContainer.addView(TextView(context).apply {
+                    text = it
+                    ViewCompat.setTransitionName(this,it)
+                })
             }
-            constraintSet.applyTo(binding.constraintContainer)
         }
 
     }
@@ -77,7 +75,7 @@ class AnimationFragment: Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() =
-            AnimationFragment()
+            MixFragment()
     }
 
 

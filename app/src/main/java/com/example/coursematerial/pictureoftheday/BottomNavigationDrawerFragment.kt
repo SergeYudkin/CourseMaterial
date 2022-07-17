@@ -3,8 +3,7 @@ package com.example.coursematerial.pictureoftheday
 import android.os.Bundle
 import android.view.*
 import com.example.coursematerial.R
-import com.example.coursematerial.animation.AnimationFragment
-import com.example.coursematerial.animation.PausePlayFragment
+import com.example.coursematerial.animation.*
 import com.example.coursematerial.databinding.BottomNavigationLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -41,14 +40,30 @@ class BottomNavigationDrawerFragment: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.navigation_one -> {
+                R.id.navigationOne -> {
                     requireActivity().supportFragmentManager.beginTransaction()
                         .replace(R.id.container,AnimationFragment.newInstance()).addToBackStack("").commit()
 
                 }
-                R.id.navigation_two -> {
+                R.id.navigationTwo -> {
                     requireActivity().supportFragmentManager.beginTransaction()
                         .replace(R.id.container,PausePlayFragment.newInstance()).addToBackStack("").commit()
+                }
+                R.id.navigationThird -> {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container,ExplodeFragment.newInstance()).addToBackStack("").commit()
+                }
+                R.id.blockFour -> {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container,BlockFourFragment.newInstance()).addToBackStack("").commit()
+                }
+                R.id.mix -> {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container,MixFragment.newInstance()).addToBackStack("").commit()
+                }
+                R.id.elevation -> {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container,ElevationFragment.newInstance()).addToBackStack("").commit()
                 }
             }
             true

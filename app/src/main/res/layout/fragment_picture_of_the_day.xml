@@ -105,23 +105,19 @@
         android:id="@+id/bottom_nav"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <com.example.coursematerial.utils.EquilateralImageView
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/photo_of_the_day_stub"
+            app:srcCompat="@drawable/ic_no_photo_vector" />
+    </LinearLayout>
 
 
-
-
-    <com.example.coursematerial.utils.EquilateralImageView
-        android:id="@+id/image_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:contentDescription="@string/photo_of_the_day_stub"
-        app:layout_constraintBottom_toBottomOf="@id/chip_group"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_no_photo_vector" />
-
-        <include android:id="@+id/lifeHack"
+    <include android:id="@+id/lifeHack"
             layout="@layout/bottom_sheet_layout"/>
 
 
