@@ -1,6 +1,7 @@
 package com.example.coursematerial.recycler
 
 import android.view.LayoutInflater
+import android.view.ScrollCaptureCallback
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -14,7 +15,17 @@ import com.example.coursematerial.view.api.TYPE_EARTH
 import com.example.coursematerial.view.api.TYPE_MARS
 import com.example.coursematerial.view.manyfragments.StartFragment
 
-class RecyclerAdapter(private val listData:List<Data>): RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>() {
+class RecyclerAdapter(private var listData:List<Data>,val callbackAdd: AddItem,val callbackRemove:RemoveItem): RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>() {
+
+
+    fun setListDataRemove(listDataNew: List<Data>,position: Int){
+            listData = listDataNew
+        notifyItemRemoved(position)
+    }
+    fun setListDataAdd(listDataNew: List<Data>,position: Int){
+        listData = listDataNew
+        notifyItemInserted(position)
+    }
 
     override fun getItemViewType(position: Int): Int {
         return listData[position].type
@@ -59,10 +70,23 @@ class RecyclerAdapter(private val listData:List<Data>): RecyclerView.Adapter<Rec
     }
 
 
-    class MarsViewHolder(val binding: FragmentRecyclerItemMarsBinding):
+   inner class MarsViewHolder(val binding: FragmentRecyclerItemMarsBinding):
         BaseViewHolder(binding.root){
         override fun bind(data: Data) {
             binding.textViewMars.text = data.name
+            binding.addItemImageView.setOnClickListener{
+                callbackAdd.add(layoutPosition)
+
+            }
+            binding.addItemImageView.setOnClickListener{
+                callbackAdd.add(layoutPosition)
+
+            }
+            binding.removeItemImageView.setOnClickListener{
+                callbackRemove.remove(layoutPosition)
+
+            }
+
         }
 
     }
