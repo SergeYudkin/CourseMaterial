@@ -38,8 +38,17 @@ class RecyclerAdapter(private val listData:List<Data>): RecyclerView.Adapter<Rec
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
-
+            when(getItemViewType(position)){
+                TYPE_EARTH ->{
+                    (holder as EarthViewHolder).bind(listData[position])
+                }
+                TYPE_MARS ->{
+                    (holder as MarsViewHolder).bind(listData[position])
+                }
+                else ->{
+                    (holder as HeaderViewHolder).bind(listData[position])
+                }
+            }
     }
 
     override fun getItemCount(): Int {
@@ -47,14 +56,19 @@ class RecyclerAdapter(private val listData:List<Data>): RecyclerView.Adapter<Rec
     }
 
     class HeaderViewHolder(val binding: FragmentRecyclerItemHeaderBinding):RecyclerView.ViewHolder(binding.root){
-
+        fun bind(data: Data) {
+            binding.textViewHeader.text = data.name
+        }
     }
-
     class EarthViewHolder(val binding: FragmentRecyclerItemEarthBinding):RecyclerView.ViewHolder(binding.root){
-
+        fun bind(data: Data) {
+            binding.textViewEarth.text = data.name
+        }
     }
-
     class MarsViewHolder(val binding: FragmentRecyclerItemMarsBinding):RecyclerView.ViewHolder(binding.root){
+        fun bind(data: Data) {
+            binding.textViewMars.text = data.name
+        }
 
     }
 }
