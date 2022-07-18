@@ -15,14 +15,14 @@ import com.example.coursematerial.view.api.TYPE_EARTH
 import com.example.coursematerial.view.api.TYPE_MARS
 import com.example.coursematerial.view.manyfragments.StartFragment
 
-class RecyclerAdapter(private var listData:List<Data>,val callbackAdd: AddItem,val callbackRemove:RemoveItem): RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>() {
+class RecyclerAdapter(private var listData:MutableList<Data>,val callbackAdd: AddItem,val callbackRemove:RemoveItem): RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>() {
 
 
-    fun setListDataRemove(listDataNew: List<Data>,position: Int){
+    fun setListDataRemove(listDataNew: MutableList<Data>,position: Int){
             listData = listDataNew
         notifyItemRemoved(position)
     }
-    fun setListDataAdd(listDataNew: List<Data>,position: Int){
+    fun setListDataAdd(listDataNew: MutableList<Data>,position: Int){
         listData = listDataNew
         notifyItemInserted(position)
     }
@@ -74,10 +74,7 @@ class RecyclerAdapter(private var listData:List<Data>,val callbackAdd: AddItem,v
         BaseViewHolder(binding.root){
         override fun bind(data: Data) {
             binding.textViewMars.text = data.name
-            binding.addItemImageView.setOnClickListener{
-                callbackAdd.add(layoutPosition)
 
-            }
             binding.addItemImageView.setOnClickListener{
                 callbackAdd.add(layoutPosition)
 
@@ -85,6 +82,20 @@ class RecyclerAdapter(private var listData:List<Data>,val callbackAdd: AddItem,v
             binding.removeItemImageView.setOnClickListener{
                 callbackRemove.remove(layoutPosition)
 
+            }
+            binding.moveItemUp.setOnClickListener {
+                // // TODO HW java.lang.IndexOutOfBoundsException: Index: -1, Size: 7
+                    listData.removeAt(layoutPosition).apply {
+                        listData.add(layoutPosition-1,this)
+                    }
+                notifyItemMoved(layoutPosition,layoutPosition-1)
+            }
+            binding.moveItemDown.setOnClickListener {
+                // TODO HW java.lang.IndexOutOfBoundsException: Index: 8, Size: 7
+                listData.removeAt(layoutPosition).apply {
+                    listData.add(layoutPosition+1,this)
+                }
+                notifyItemMoved(layoutPosition,layoutPosition+1)
             }
 
         }
