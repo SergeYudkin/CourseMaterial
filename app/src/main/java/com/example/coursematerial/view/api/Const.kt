@@ -11,3 +11,6 @@ const val BUND_KEY = "bund_key"
 const val FIRST_FRAGMENT = 0
 const val SECOND_FRAGMENT = 1
 const val THIRD_FRAGMENT = 2
+const val TYPE_EARTH = 1
+const val TYPE_MARS = 2
+const val TYPE_HEADER = 3

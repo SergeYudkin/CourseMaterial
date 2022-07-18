@@ -22,6 +22,7 @@ import com.example.coursematerial.R
 import com.example.coursematerial.R.drawable
 import com.example.coursematerial.R.menu
 import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
+import com.example.coursematerial.recycler.RecyclerFragment
 import com.example.coursematerial.utils.Parameters
 import com.example.coursematerial.view.MainActivity
 import com.example.coursematerial.view.manyfragments.layouts.MaterialFragment
@@ -74,7 +75,9 @@ class PictureOfTheDayFragment : Fragment() {
                 .replace(R.id.container, MaterialFragment.newInstance()).addToBackStack("").commit()}
 
 
-            R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
+            R.id.app_bar_fav -> {requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container, RecyclerFragment.newInstance()).addToBackStack("").commit()}
+
             R.id.app_bar_settings -> {requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.container,SettingsFragment.newInstance()).addToBackStack("").commit()}
             android.R.id.home-> {
