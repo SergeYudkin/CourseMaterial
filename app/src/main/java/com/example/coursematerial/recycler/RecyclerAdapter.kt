@@ -57,6 +57,8 @@ class RecyclerAdapter(private val listData:List<Data>): RecyclerView.Adapter<Rec
             binding.textViewEarth.text = data.name
         }
     }
+
+
     class MarsViewHolder(val binding: FragmentRecyclerItemMarsBinding):
         BaseViewHolder(binding.root){
         override fun bind(data: Data) {
@@ -64,6 +66,9 @@ class RecyclerAdapter(private val listData:List<Data>): RecyclerView.Adapter<Rec
         }
 
     }
+
+
+
     abstract class BaseViewHolder(view: View):RecyclerView.ViewHolder(view) {
         abstract fun bind(data: Data)
     }
