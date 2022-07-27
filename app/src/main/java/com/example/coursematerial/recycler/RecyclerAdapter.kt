@@ -1,13 +1,16 @@
 package com.example.coursematerial.recycler
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ScrollCaptureCallback
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.coursematerial.R
 import com.example.coursematerial.databinding.FragmentRecyclerItemEarthBinding
 import com.example.coursematerial.databinding.FragmentRecyclerItemHeaderBinding
 import com.example.coursematerial.databinding.FragmentRecyclerItemMarsBinding
@@ -16,7 +19,7 @@ import com.example.coursematerial.view.api.TYPE_MARS
 import com.example.coursematerial.view.manyfragments.StartFragment
 
 class RecyclerAdapter(private var listData:MutableList<Pair<Data,Boolean>>,val callbackAdd: AddItem,val callbackRemove:RemoveItem):
-    RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>() {
+    RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>(),ItemTouchHelperAdapter {
 
 
     fun setListDataRemove(listDataNew: MutableList<Pair<Data,Boolean>>,position: Int){
@@ -115,12 +118,36 @@ class RecyclerAdapter(private var listData:MutableList<Pair<Data,Boolean>>,val c
 
         }
 
+
+
+
+   }
+
+
+
+    abstract class BaseViewHolder(view: View):
+        RecyclerView.ViewHolder(view),ItemTouchHelperViewHolder {
+
+        abstract fun bind(data: Pair<Data,Boolean>)
+        override fun onItemSelect() {
+            itemView.setBackgroundColor(ContextCompat.getColor(itemView.context,R.color.blu_500))
+        }
+
+        override fun onItemClear() {
+            itemView.setBackgroundColor(0)
+        }
+    }
+
+    override fun onItemMove(fromPosition: Int, toPosition: Int) {
+        listData.removeAt(fromPosition).apply {
+            listData.add(toPosition,this)
+        }
+        notifyItemMoved(fromPosition,toPosition)
     }
 
 
-
-    abstract class BaseViewHolder(view: View):RecyclerView.ViewHolder(view) {
-        abstract fun bind(data: Pair<Data,Boolean>)
+    override fun onItemDismiss(position: Int) {
+        callbackRemove.remove(position)
     }
 
 }

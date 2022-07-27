@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.animation.AnticipateOvershootInterpolator
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
 import com.example.coursematerial.R
@@ -61,12 +62,7 @@ class RecyclerFragment: Fragment() {
         adapter = RecyclerAdapter(data, callbackAdd, callbackRemove )
         binding.recyclerView.adapter = adapter
 
-        val lat = 10
-        val lon = 10
-        val lacation = lat to lon
-        lacation.first
-        lacation.second
-        val lacationTwo = Pair(lat,lon)
+       ItemTouchHelper(ItemTouchHelperCallback(adapter)).attachToRecyclerView(binding.recyclerView)
     }
 
     private val callbackAdd = AddItem {
