@@ -1,26 +1,33 @@
 package com.example.coursematerial.recycler
 
-import android.annotation.SuppressLint
+
 import android.view.LayoutInflater
-import android.view.ScrollCaptureCallback
+
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coursematerial.R
 import com.example.coursematerial.databinding.FragmentRecyclerItemEarthBinding
 import com.example.coursematerial.databinding.FragmentRecyclerItemHeaderBinding
 import com.example.coursematerial.databinding.FragmentRecyclerItemMarsBinding
+import com.example.coursematerial.recycler.diffutil.Change
+import com.example.coursematerial.recycler.diffutil.DiffUtilCallback
+import com.example.coursematerial.recycler.diffutil.createCombinedPayload
 import com.example.coursematerial.view.api.TYPE_EARTH
 import com.example.coursematerial.view.api.TYPE_MARS
-import com.example.coursematerial.view.manyfragments.StartFragment
 
 class RecyclerAdapter(private var listData:MutableList<Pair<Data,Boolean>>,val callbackAdd: AddItem,val callbackRemove:RemoveItem):
     RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>(),ItemTouchHelperAdapter {
 
+
+    fun setListDataForDiffUtil(listDataNew: MutableList<Pair<Data, Boolean>>){
+      val diff =   DiffUtil.calculateDiff(DiffUtilCallback(listData, listDataNew))
+        diff.dispatchUpdatesTo(this)
+        listData = listDataNew
+    }
 
     fun setListDataRemove(listDataNew: MutableList<Pair<Data,Boolean>>,position: Int){
             listData = listDataNew
@@ -54,6 +61,24 @@ class RecyclerAdapter(private var listData:MutableList<Pair<Data,Boolean>>,val c
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
             holder.bind(listData[position])
+    }
+
+    override fun onBindViewHolder(
+        holder: BaseViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if(payloads.isEmpty()){
+            super.onBindViewHolder(holder, position, payloads)
+        }else{
+            val createCombinedPayload = createCombinedPayload(payloads as  List<Change<Pair<Data, Boolean>>>)
+            if (createCombinedPayload.newData.first.name != createCombinedPayload.oldData.first.name) // в данном случае это лишнее
+                holder.itemView.findViewById<TextView>(R.id.textViewMars).text = createCombinedPayload.newData.first.name
+
+
+
+        }
+
     }
 
     override fun getItemCount(): Int {

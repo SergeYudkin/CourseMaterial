@@ -10,7 +10,7 @@ import com.example.coursematerial.view.manyfragments.StartFragment
 
 
 
-data class Data( val name: String = "Text", val someDescription: String? = "Description", val type: Int = TYPE_MARS ){
+data class Data (val id:Int = 0,val name: String = "Text", val someDescription: String? = "Description", val type: Int = TYPE_MARS ){
 
 
 
