@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -73,9 +74,7 @@ class RecyclerAdapter(private var listData:MutableList<Pair<Data,Boolean>>,val c
         }else{
             val createCombinedPayload = createCombinedPayload(payloads as  List<Change<Pair<Data, Boolean>>>)
             if (createCombinedPayload.newData.first.name != createCombinedPayload.oldData.first.name) // в данном случае это лишнее
-                holder.itemView.findViewById<TextView>(R.id.textViewMars).text = createCombinedPayload.newData.first.name
-
-
+                holder.itemView.findViewById<TextView>(R.id.name).text = createCombinedPayload.newData.first.name
 
         }
 
@@ -88,13 +87,13 @@ class RecyclerAdapter(private var listData:MutableList<Pair<Data,Boolean>>,val c
     class HeaderViewHolder(val binding: FragmentRecyclerItemHeaderBinding):
         BaseViewHolder(binding.root){
        override fun bind(data: Pair<Data,Boolean>) {
-            binding.textViewHeader.text = data.first.name
+            binding.name.text = data.first.name
         }
     }
     class EarthViewHolder(val binding: FragmentRecyclerItemEarthBinding):
         BaseViewHolder(binding.root){
         override fun bind(data: Pair<Data,Boolean>) {
-            binding.textViewEarth.text = data.first.name
+            binding.name.text = data.first.name
         }
     }
 
@@ -102,7 +101,7 @@ class RecyclerAdapter(private var listData:MutableList<Pair<Data,Boolean>>,val c
    inner class MarsViewHolder(val binding: FragmentRecyclerItemMarsBinding):
         BaseViewHolder(binding.root){
         override fun bind(data: Pair<Data,Boolean>) {
-            binding.textViewMars.text = data.first.name
+            binding.name.text = data.first.name
 
             binding.addItemImageView.setOnClickListener{
                 callbackAdd.add(layoutPosition)
@@ -113,18 +112,21 @@ class RecyclerAdapter(private var listData:MutableList<Pair<Data,Boolean>>,val c
 
             }
             binding.moveItemUp.setOnClickListener {
-                // // TODO HW java.lang.IndexOutOfBoundsException: Index: -1, Size: 7
+                if (layoutPosition >= 2){
                     listData.removeAt(layoutPosition).apply {
-                        listData.add(layoutPosition-1,this)   //  сделать на  if/else вместо обработки ошибки
+                        listData.add(layoutPosition-1,this)
                     }
-                notifyItemMoved(layoutPosition,layoutPosition-1)
-            }
-            binding.moveItemDown.setOnClickListener {
-                // TODO HW java.lang.IndexOutOfBoundsException: Index: 8, Size: 7
-                listData.removeAt(layoutPosition).apply {
-                    listData.add(layoutPosition+1,this)
+                    notifyItemMoved(layoutPosition,layoutPosition-1)
                 }
-                notifyItemMoved(layoutPosition,layoutPosition+1)
+            }
+
+            binding.moveItemDown.setOnClickListener {
+                if (layoutPosition < listData.size-1){
+                    listData.removeAt(layoutPosition).apply {
+                        listData.add(layoutPosition+1,this)
+                    }
+                    notifyItemMoved(layoutPosition,layoutPosition+1)
+                }
             }
             binding.marsDescriptionTextView.visibility =
                 if (listData[layoutPosition].second)
@@ -134,21 +136,13 @@ class RecyclerAdapter(private var listData:MutableList<Pair<Data,Boolean>>,val c
                 listData[layoutPosition] = listData[layoutPosition].let {
                     it.first to !it.second
                 }
-
                 notifyItemChanged(layoutPosition)
-
-
 
             }
 
         }
 
-
-
-
    }
-
-
 
     abstract class BaseViewHolder(view: View):
         RecyclerView.ViewHolder(view),ItemTouchHelperViewHolder {

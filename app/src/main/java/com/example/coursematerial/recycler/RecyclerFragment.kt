@@ -89,26 +89,26 @@ class RecyclerFragment: Fragment() {
         return when(instanceNumber){
             false -> listOf(
                 Pair(Data( 0,"Header",type = TYPE_HEADER),false),
-                Pair(Data( 1,"Mars",type = TYPE_MARS),false),
-                Pair(Data( 2,"Mars",type = TYPE_MARS),false),
-                Pair(Data( 3,"Mars",type = TYPE_MARS),false),
-                Pair(Data( 4,"Mars",type = TYPE_MARS),false),
-                Pair(Data( 5,"Mars",type = TYPE_MARS),false),
-                Pair(Data( 6,"Mars",type = TYPE_MARS),false),
-                Pair(Data( 7,"Mars",type = TYPE_MARS),false),
-                Pair(Data( 8,"Mars",type = TYPE_MARS),false),
-                Pair(Data( 9,"Mars",type = TYPE_MARS),false)
+                Pair(Data( 1,"Mars",""),false),
+                Pair(Data( 2,"Mars",""),false),
+                Pair(Data( 3,"Mars",""),false),
+                Pair(Data( 4,"Mars",""),false),
+                Pair(Data( 5,"Mars",""),false),
+                Pair(Data( 6,"Mars",""),false),
+                Pair(Data( 7,"Mars",""),false),
+                Pair(Data( 8,"Mars",""),false),
+                Pair(Data( 9,"Mars",""),false)
             )
             true -> listOf (Pair(Data( 0,"Header",type = TYPE_HEADER),false),
-            Pair(Data( 1,"Earth",type = TYPE_EARTH),false),
-            Pair(Data( 2,"Earth",type = TYPE_EARTH),false),
-            Pair(Data( 3,"Mars",type = TYPE_MARS),false),
-            Pair(Data( 4,"Earth",type = TYPE_EARTH),false),
-            Pair(Data( 5,"Earth",type = TYPE_EARTH),false),
-            Pair(Data( 6,"Earth",type = TYPE_EARTH),false),
-            Pair(Data( 7,"Earth",type = TYPE_EARTH),false),
-            Pair(Data( 8,"Earth",type = TYPE_EARTH),false),
-            Pair(Data( 9,"Mars",type = TYPE_MARS),false)
+            Pair(Data( 1,"Earth",""),false),
+            Pair(Data( 2,"Earth",""),false),
+            Pair(Data( 3,"Mars",""),false),
+            Pair(Data( 4,"Earth",""),false),
+            Pair(Data( 5,"Earth",""),false),
+            Pair(Data( 6,"Earth",""),false),
+            Pair(Data( 7,"Earth",""),false),
+            Pair(Data( 8,"Earth",""),false),
+            Pair(Data( 9,"Mars",""),false)
             )
         }
     }
