@@ -3,6 +3,7 @@ package com.example.coursematerial.pictureoftheday
 
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -301,6 +302,8 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.lifeHack.title.text = appState.serverResponseData.title
                 binding.lifeHack.explanation.text = appState.serverResponseData.explanation
 
+                binding.textView.text = appState.serverResponseData.explanation
+                binding.textView.typeface = Typeface.createFromAsset(requireActivity().assets,"aZeret1.ttf")
             }
         }
     }
