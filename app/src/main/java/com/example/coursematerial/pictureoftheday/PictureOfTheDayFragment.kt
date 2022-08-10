@@ -2,14 +2,15 @@ package com.example.coursematerial.pictureoftheday
 
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
-import android.text.Html
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.Spanned
+import android.text.*
+import android.text.style.BulletSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.ImageSpan
 import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
@@ -19,6 +20,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.*
@@ -27,6 +29,7 @@ import com.example.coursematerial.R
 import com.example.coursematerial.R.drawable
 import com.example.coursematerial.R.menu
 import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
+
 import com.example.coursematerial.recycler.RecyclerFragment
 import com.example.coursematerial.utils.Parameters
 import com.example.coursematerial.view.MainActivity
@@ -276,6 +279,7 @@ class PictureOfTheDayFragment : Fragment() {
 
 
 
+    @SuppressLint("NewApi") // TODO HW не потерять пользователей с 24-27 sdk версии
     private fun renderData(appState: AppState){
 
         val mayTran = TransitionSet()
@@ -306,17 +310,45 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.lifeHack.title.text = appState.serverResponseData.title
                 binding.lifeHack.explanation.text = appState.serverResponseData.explanation
 
-                binding.textView.text = appState.serverResponseData.explanation
-                binding.textView.typeface = Typeface.createFromAsset(requireActivity().assets,"aZeret1.ttf")
+                binding.textViewSpan.text = appState.serverResponseData.explanation
+                binding.textViewSpan.typeface = Typeface.createFromAsset(requireActivity().assets,"aZeret1.ttf")
 
                     val spanned: Spanned
                     val spannableString: SpannableString
                     val spannableStringBuilder: SpannableStringBuilder
 
-                val text = "My text <ul><li>bullet one</li><li>bullet two</li></ul>"
+                val text = ("My text \nbullet one \nbullet two")
 
-                binding.textView.text = text
-                binding.textView.text = Html.fromHtml(text)
+                spannableString = SpannableString(text)
+
+                val bulletSpanOne = BulletSpan(20,ContextCompat.getColor(requireContext(),R.color.blu_800),20)
+                val bulletSpanSecond = BulletSpan(20,ContextCompat.getColor(requireContext(),R.color.blu_800),20)
+                val colorSpan = ForegroundColorSpan(ContextCompat.getColor(requireContext(),R.color.blu_800))
+
+                spannableString.setSpan(bulletSpanOne,9,20,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannableString.setSpan(bulletSpanSecond,21,text.length,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                for (i in text.indices){
+                    if (text[i]== 't'){
+                        spannableString.setSpan(
+                            ForegroundColorSpan(ContextCompat.getColor(requireContext(),R.color.red)),
+                        i,i+1,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    }
+                }
+
+                val bitmap = ContextCompat.getDrawable(requireContext(),
+                    R.drawable.ic_system
+                )!!.toBitmap()
+                for (i in text.indices){
+                    if (text[i]== 'o'){
+                        spannableString.setSpan(
+                            ImageSpan(bitmap),
+                            i,i+1,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    }
+                }
+
+
+                binding.textViewSpan.text = spannableString
+
 
 
 
