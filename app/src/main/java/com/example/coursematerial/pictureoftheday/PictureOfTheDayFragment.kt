@@ -325,20 +325,20 @@ class PictureOfTheDayFragment : Fragment() {
                         "bullet two\n"+
                         "bullet two"
 
-                spannableString = SpannableString(text)
+                spannableStringBuilder = SpannableStringBuilder(text)
                 val result = text.indexesOf("\n")  // функция которую нужно запомнить
 
                 var current = result.first()
 
                 result.forEach{
                     if (current!=it){
-                        spannableString.setSpan(BulletSpan(20,ContextCompat.getColor(requireContext(),R.color.blu_800),20),
+                        spannableStringBuilder.setSpan(BulletSpan(20,ContextCompat.getColor(requireContext(),R.color.blu_800),20),
                             current+1,it,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
                     }
                     current = it
                 }
-                spannableString.setSpan(BulletSpan(20,ContextCompat.getColor(requireContext(),R.color.blu_800),20),
+                spannableStringBuilder.setSpan(BulletSpan(20,ContextCompat.getColor(requireContext(),R.color.blu_800),20),
                     current+1,text.length,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 
                 Log.d("QQQ", result.toString())
@@ -346,7 +346,7 @@ class PictureOfTheDayFragment : Fragment() {
 
                 for (i in text.indices){
                     if (text[i]== 't'){
-                        spannableString.setSpan(
+                        spannableStringBuilder.setSpan(
                             ForegroundColorSpan(ContextCompat.getColor(requireContext(),R.color.red)),
                         i,i+1,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     }
@@ -357,14 +357,16 @@ class PictureOfTheDayFragment : Fragment() {
                 )!!.toBitmap()
                 for (i in text.indices){
                     if (text[i]== 'o'){
-                        spannableString.setSpan(
+                        spannableStringBuilder.setSpan(
                             ImageSpan(bitmap),
                             i,i+1,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     }
                 }
 
+                spannableStringBuilder.insert(3,"word")
+                //spannableStringBuilder.replace(3,4,"word")
 
-                binding.textViewSpan.text = spannableString
+                binding.textViewSpan.text = spannableStringBuilder
 
             }
         }
