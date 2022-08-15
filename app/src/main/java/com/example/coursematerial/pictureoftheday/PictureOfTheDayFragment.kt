@@ -13,10 +13,7 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.ImageSpan
 import android.util.Log
 import android.view.*
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
@@ -315,7 +312,7 @@ class PictureOfTheDayFragment : Fragment() {
 
                     val spanned: Spanned
                     val spannableString: SpannableString
-                    val spannableStringBuilder: SpannableStringBuilder
+                    var spannableStringBuilder: SpannableStringBuilder
 
                 val text = "My text \nbullet one \nbullet two"+
                         "\n"+
@@ -326,6 +323,10 @@ class PictureOfTheDayFragment : Fragment() {
                         "bullet two"
 
                 spannableStringBuilder = SpannableStringBuilder(text)
+
+                binding.textViewSpan.setText(spannableStringBuilder, TextView.BufferType.EDITABLE)
+                spannableStringBuilder = binding.textViewSpan.text as SpannableStringBuilder
+
                 val result = text.indexesOf("\n")  // функция которую нужно запомнить
 
                 var current = result.first()
@@ -366,7 +367,7 @@ class PictureOfTheDayFragment : Fragment() {
                 spannableStringBuilder.insert(3,"word")
                 //spannableStringBuilder.replace(3,4,"word")
 
-                binding.textViewSpan.text = spannableStringBuilder
+               // binding.textViewSpan.text = spannableStringBuilder
 
             }
         }
