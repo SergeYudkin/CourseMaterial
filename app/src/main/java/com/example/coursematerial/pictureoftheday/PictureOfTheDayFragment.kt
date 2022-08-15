@@ -317,16 +317,33 @@ class PictureOfTheDayFragment : Fragment() {
                     val spannableString: SpannableString
                     val spannableStringBuilder: SpannableStringBuilder
 
-                val text = ("My text \nbullet one \nbullet two")
+                val text = "My text \nbullet one \nbullet two"+
+                        "\n"+
+                        "bullet two\n"+
+                        "bullet two\n"+
+                        "bullet two\n"+
+                        "bullet two\n"+
+                        "bullet two"
 
                 spannableString = SpannableString(text)
+                val result = text.indexesOf("\n")  // функция которую нужно запомнить
 
-                val bulletSpanOne = BulletSpan(20,ContextCompat.getColor(requireContext(),R.color.blu_800),20)
-                val bulletSpanSecond = BulletSpan(20,ContextCompat.getColor(requireContext(),R.color.blu_800),20)
-                val colorSpan = ForegroundColorSpan(ContextCompat.getColor(requireContext(),R.color.blu_800))
+                var current = result.first()
 
-                spannableString.setSpan(bulletSpanOne,9,20,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                spannableString.setSpan(bulletSpanSecond,21,text.length,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                result.forEach{
+                    if (current!=it){
+                        spannableString.setSpan(BulletSpan(20,ContextCompat.getColor(requireContext(),R.color.blu_800),20),
+                            current+1,it,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+                    }
+                    current = it
+                }
+                spannableString.setSpan(BulletSpan(20,ContextCompat.getColor(requireContext(),R.color.blu_800),20),
+                    current+1,text.length,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+                Log.d("QQQ", result.toString())
+
+
                 for (i in text.indices){
                     if (text[i]== 't'){
                         spannableString.setSpan(
@@ -349,12 +366,14 @@ class PictureOfTheDayFragment : Fragment() {
 
                 binding.textViewSpan.text = spannableString
 
-
-
-
             }
         }
     }
+
+    fun String.indexesOf(substr: String, ignoreCase: Boolean = true): List<Int> =
+        (if (ignoreCase) Regex(substr, RegexOption.IGNORE_CASE) else Regex(substr))
+            .findAll(this).map { it.range.first }.toList()
+
 
     override fun onDestroy() {
         super.onDestroy()
