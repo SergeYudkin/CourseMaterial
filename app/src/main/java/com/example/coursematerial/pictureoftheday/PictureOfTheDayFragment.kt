@@ -51,6 +51,7 @@ class PictureOfTheDayFragment : Fragment() {
     private var isMain = true
     private var duration = 2000L
     private var isFlagAnimation = false
+    lateinit var spannableRainbow: SpannableString
 
     private var _binding : FragmentPictureOfTheDayBinding? = null
     private val binding : FragmentPictureOfTheDayBinding
@@ -313,6 +314,8 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.lifeHack.explanation.text = appState.serverResponseData.explanation
 
                 binding.textViewSpan.text = appState.serverResponseData.explanation
+
+                /*binding.textViewSpan.text = appState.serverResponseData.explanation
                 binding.textViewSpan.typeface = Typeface.createFromAsset(requireActivity().assets,"aZeret1.ttf")
 
                     val spanned: Spanned
@@ -390,15 +393,46 @@ class PictureOfTheDayFragment : Fragment() {
                     }
                 }
 
-                FontsContractCompat.requestFont(requireContext(),request,callback, Handler(Looper.getMainLooper()))
+                FontsContractCompat.requestFont(requireContext(),request,callback, Handler(Looper.getMainLooper()))*/
 
             }
         }
     }
 
-    fun String.indexesOf(substr: String, ignoreCase: Boolean = true): List<Int> =
+  /*  private fun colorText(colorFirstNumber:Int){
+        binding.LargeText.setText(spannableRainbow, TextView.BufferType.SPANNABLE)
+        spannableRainbow = binding.LargeText.text as SpannableString
+        val map = mapOf(
+            0 to ContextCompat.getColor(this, R.color.colorAccent),
+            1 to ContextCompat.getColor(this, R.color.orange),
+            2 to ContextCompat.getColor(this, R.color.yellow),
+            3 to ContextCompat.getColor(this, R.color.green),
+            4 to ContextCompat.getColor(this, R.color.blue),
+            5 to ContextCompat.getColor(this, R.color.purple_700),
+            6 to ContextCompat.getColor(this,R.color.purple_500)
+        )
+        val spans = spannableRainbow.getSpans(
+            0, spannableRainbow.length,
+            ForegroundColorSpan::class.java
+        )
+        for (span in spans) {
+            spannableRainbow.removeSpan(span)
+        }
+
+        var colorNumber = colorFirstNumber
+        for (i in 0 until binding.LargeText.text.length) {
+            if (colorNumber == 5) colorNumber = 0 else colorNumber += 1
+            spannableRainbow.setSpan(
+                ForegroundColorSpan(map.getValue(colorNumber)),
+                i, i + 1,
+                Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+            )
+        }
+    }*/
+
+   /* fun String.indexesOf(substr: String, ignoreCase: Boolean = true): List<Int> =
         (if (ignoreCase) Regex(substr, RegexOption.IGNORE_CASE) else Regex(substr))
-            .findAll(this).map { it.range.first }.toList()
+            .findAll(this).map { it.range.first }.toList()*/
 
 
     override fun onDestroy() {
