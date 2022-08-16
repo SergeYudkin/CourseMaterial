@@ -7,6 +7,7 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
 import android.text.*
@@ -315,6 +316,9 @@ class PictureOfTheDayFragment : Fragment() {
 
                 binding.textViewSpan.text = appState.serverResponseData.explanation
 
+                spannableRainbow = SpannableString(appState.serverResponseData.explanation)
+                rainbow(1)
+
                 /*binding.textViewSpan.text = appState.serverResponseData.explanation
                 binding.textViewSpan.typeface = Typeface.createFromAsset(requireActivity().assets,"aZeret1.ttf")
 
@@ -399,17 +403,31 @@ class PictureOfTheDayFragment : Fragment() {
         }
     }
 
-  /*  private fun colorText(colorFirstNumber:Int){
-        binding.LargeText.setText(spannableRainbow, TextView.BufferType.SPANNABLE)
-        spannableRainbow = binding.LargeText.text as SpannableString
+    fun rainbow(i:Int=1) {
+        var currentCount = i
+        val x = object : CountDownTimer(20000, 200) {
+            override fun onTick(millisUntilFinished: Long) {
+                colorText(currentCount)
+                currentCount = if (++currentCount>5) 1 else currentCount
+            }
+            override fun onFinish() {
+                rainbow(currentCount)
+            }
+        }
+        x.start()
+    }
+
+    private fun colorText(colorFirstNumber:Int){
+        binding.textViewSpan.setText(spannableRainbow, TextView.BufferType.SPANNABLE)
+        spannableRainbow = binding.textViewSpan.text as SpannableString
         val map = mapOf(
-            0 to ContextCompat.getColor(this, R.color.colorAccent),
-            1 to ContextCompat.getColor(this, R.color.orange),
-            2 to ContextCompat.getColor(this, R.color.yellow),
-            3 to ContextCompat.getColor(this, R.color.green),
-            4 to ContextCompat.getColor(this, R.color.blue),
-            5 to ContextCompat.getColor(this, R.color.purple_700),
-            6 to ContextCompat.getColor(this,R.color.purple_500)
+            0 to ContextCompat.getColor(requireContext(), R.color.colorAccent),
+            1 to ContextCompat.getColor(requireContext(), R.color.orange),
+            2 to ContextCompat.getColor(requireContext(), R.color.yellow),
+            3 to ContextCompat.getColor(requireContext(), R.color.green),
+            4 to ContextCompat.getColor(requireContext(), R.color.blue),
+            5 to ContextCompat.getColor(requireContext(), R.color.purple_700),
+            6 to ContextCompat.getColor(requireContext(),R.color.purple_500)
         )
         val spans = spannableRainbow.getSpans(
             0, spannableRainbow.length,
@@ -420,7 +438,7 @@ class PictureOfTheDayFragment : Fragment() {
         }
 
         var colorNumber = colorFirstNumber
-        for (i in 0 until binding.LargeText.text.length) {
+        for (i in 0 until binding.textViewSpan.text.length) {
             if (colorNumber == 5) colorNumber = 0 else colorNumber += 1
             spannableRainbow.setSpan(
                 ForegroundColorSpan(map.getValue(colorNumber)),
@@ -428,7 +446,7 @@ class PictureOfTheDayFragment : Fragment() {
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
         }
-    }*/
+    }
 
    /* fun String.indexesOf(substr: String, ignoreCase: Boolean = true): List<Int> =
         (if (ignoreCase) Regex(substr, RegexOption.IGNORE_CASE) else Regex(substr))
