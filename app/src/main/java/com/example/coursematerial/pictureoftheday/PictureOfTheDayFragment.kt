@@ -11,10 +11,7 @@ import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
 import android.text.*
-import android.text.style.BulletSpan
-import android.text.style.ForegroundColorSpan
-import android.text.style.ImageSpan
-import android.text.style.TypefaceSpan
+import android.text.style.*
 import android.util.Log
 import android.view.*
 import android.widget.*
@@ -315,6 +312,34 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.lifeHack.explanation.text = appState.serverResponseData.explanation
 
                 binding.textViewSpan.text = appState.serverResponseData.explanation
+
+
+
+
+                val spannableString: SpannableString = SpannableString(appState.serverResponseData.explanation)
+                val letters = appState.serverResponseData.explanation
+
+
+                for (i in binding.textViewSpan.text.indices){
+                    if (letters[i]== 't'){
+                        spannableString.setSpan(
+                            BackgroundColorSpan(ContextCompat.getColor(requireContext(),R.color.blu_800)),
+                            i,i+1,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    }
+                }
+
+                val bitmap = ContextCompat.getDrawable(requireContext(),
+                    android.R.drawable.ic_delete
+                )!!.toBitmap()
+                for (i in letters.indices){
+                    if (letters[i]== 'o'){
+                        spannableString.setSpan(
+                            ImageSpan(bitmap),
+                            i,i+1,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    }
+                }
+
+                binding.textViewSpan.text = spannableString
 
                 spannableRainbow = SpannableString(appState.serverResponseData.explanation)
                 rainbow(1)
