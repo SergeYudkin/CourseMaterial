@@ -17,6 +17,8 @@
     </style>
 
 
+
+
     <style name="MyBottomAppBarStyle" parent="Widget.MaterialComponents.BottomAppBar.Colored">
         <item name="backgroundTint">?superColor</item>
     </style>
