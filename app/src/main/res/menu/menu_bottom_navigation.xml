@@ -27,5 +27,15 @@
             android:icon="@android:drawable/star_on"
             android:title="Elevation" />
 
+        <item
+            android:id="@+id/splash"
+            android:icon="@android:drawable/star_on"
+            android:title="Splash" />
+
+        <item
+            android:id="@+id/ux"
+            android:icon="@android:drawable/star_on"
+            android:title="UX" />
+
     </group>
 </menu>

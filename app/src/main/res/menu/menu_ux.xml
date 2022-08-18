@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.gb.m_2090_3.MainActivity">
+    <item
+        android:id="@+id/ux_text"
+        android:icon="@drawable/ic_favourite_menu"
+        android:title="@string/ux_text"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/ux_button"
+        android:icon="@drawable/ic_favourite_menu"
+        android:title="@string/ux_button"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/ux_tutorial"
+        android:icon="@drawable/ic_favourite_menu"
+        android:title="@string/ux_tutorial"
+        app:showAsAction="ifRoom" />
+
+
+</menu>

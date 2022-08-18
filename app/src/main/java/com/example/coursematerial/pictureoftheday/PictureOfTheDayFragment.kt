@@ -341,8 +341,8 @@ class PictureOfTheDayFragment : Fragment() {
 
                 binding.textViewSpan.text = spannableString
 
-                spannableRainbow = SpannableString(appState.serverResponseData.explanation)
-                rainbow(1)
+              //  spannableRainbow = SpannableString(appState.serverResponseData.explanation)
+             //   rainbow(1)
 
                 /*binding.textViewSpan.text = appState.serverResponseData.explanation
                 binding.textViewSpan.typeface = Typeface.createFromAsset(requireActivity().assets,"aZeret1.ttf")

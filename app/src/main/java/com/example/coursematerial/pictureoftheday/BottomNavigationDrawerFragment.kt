@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import com.example.coursematerial.R
 import com.example.coursematerial.animation.*
+import com.example.coursematerial.animation.ux.UXFragment
 import com.example.coursematerial.databinding.BottomNavigationLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -64,6 +65,16 @@ class BottomNavigationDrawerFragment: BottomSheetDialogFragment() {
                 R.id.elevation -> {
                     requireActivity().supportFragmentManager.beginTransaction()
                         .replace(R.id.container,ElevationFragment.newInstance()).addToBackStack("").commit()
+                }
+
+                R.id.splash -> {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container,SplashFragment.newInstance()).addToBackStack("").commit()
+                }
+
+                R.id.ux -> {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container,UXFragment.newInstance()).addToBackStack("").commit()
                 }
             }
             true
