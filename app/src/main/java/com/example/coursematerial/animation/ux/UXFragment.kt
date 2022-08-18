@@ -39,15 +39,15 @@ class UXFragment: Fragment() {
         binding.bottomNavigationViewUx.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.ux_text -> {
-                    navigationTo(UxTextFragment())
+                    navigateTo(UxTextFragment())
                     true
                 }
                 R.id.ux_button -> {
-                    navigationTo(UxButtonFragment())
+                    navigateTo(UxButtonFragment())
                     true
                 }
                 R.id.ux_tutorial -> {
-                    navigationTo(UxTutorialFragment())
+                    navigateTo(UxTutorialFragment())
                     true
                 }
                 else -> true
@@ -58,8 +58,16 @@ class UXFragment: Fragment() {
 
     }
 
-    private fun navigationTo(f: Fragment) {
+   /* private fun navigationTo(f: Fragment) {
         requireActivity().supportFragmentManager.beginTransaction().replace(R.id.ux_container, f).commit()
+    }*/
+
+    private fun navigateTo(fragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in,
+            R.anim.fade_out,
+            R.anim.fade_in,
+            R.anim.slide_out
+        ).replace(R.id.ux_container, fragment).commit()
     }
 
 
