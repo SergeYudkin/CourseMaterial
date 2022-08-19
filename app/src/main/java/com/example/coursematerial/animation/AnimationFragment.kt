@@ -10,27 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
 import com.example.coursematerial.R
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentAnimationStartBinding
 
 
-class AnimationFragment: Fragment() {
-
-    private var _binding: FragmentAnimationStartBinding? = null
-    private val binding: FragmentAnimationStartBinding
-        get() {
-            return _binding!!
-        }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentAnimationStartBinding.inflate(inflater, container, false)
-        return binding.root
+class AnimationFragment: ViewBindingFragment<FragmentAnimationStartBinding>(FragmentAnimationStartBinding::inflate) {
 
 
-    }
         private var isFlagAnimation = false
 
 
@@ -41,8 +27,6 @@ class AnimationFragment: Fragment() {
 
         //constraintSetStart.clone(binding.constraintContainer)
         constraintSet.clone(context, R.layout.fragment_animation_start)
-
-
 
 
         binding.tap.setOnClickListener{
@@ -67,19 +51,10 @@ class AnimationFragment: Fragment() {
 
     }
 
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
     companion object {
         @JvmStatic
         fun newInstance() =
             AnimationFragment()
     }
-
-
 
 }

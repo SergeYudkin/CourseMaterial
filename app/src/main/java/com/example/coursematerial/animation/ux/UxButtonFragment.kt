@@ -16,48 +16,7 @@ import com.example.coursematerial.databinding.FragmentUxButtonBinding
 import com.example.coursematerial.databinding.FragmentUxTextBinding
 
 
-class UxButtonFragment: Fragment() {
-
-    private var _binding: FragmentUxButtonBinding? = null
-    private val binding: FragmentUxButtonBinding
-        get() {
-            return _binding!!
-        }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentUxButtonBinding.inflate(inflater, container, false)
-        return binding.root
-
-
-    }
-
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-
-
-    }
-
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            UxButtonFragment()
-    }
-
+class UxButtonFragment: ViewBindingFragment<FragmentUxButtonBinding>(FragmentUxButtonBinding::inflate) {
 
 
 }

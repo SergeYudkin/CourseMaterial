@@ -14,42 +14,18 @@ import androidx.transition.Explode
 import androidx.transition.Transition
 import androidx.transition.TransitionManager
 import com.example.coursematerial.R
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentAnimationStartBinding
 import com.example.coursematerial.databinding.FragmentExplodeBinding
 
 
-class ExplodeFragment: Fragment() {
-
-    private var _binding: FragmentExplodeBinding? = null
-    private val binding: FragmentExplodeBinding
-        get() {
-            return _binding!!
-        }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentExplodeBinding.inflate(inflater, container, false)
-        return binding.root
-
-
-    }
-        private var isFlagAnimation = false
+class ExplodeFragment: ViewBindingFragment<FragmentExplodeBinding>(FragmentExplodeBinding::inflate) {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.recyclerView.adapter = Adapter()
-    }
-
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     companion object {
@@ -92,9 +68,6 @@ class ExplodeFragment: Fragment() {
         }
 
         inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
-
-
-
 
     }
 

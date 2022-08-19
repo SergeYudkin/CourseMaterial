@@ -12,29 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
 import com.example.coursematerial.R
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentAnimationStartBinding
 import com.example.coursematerial.databinding.FragmentMixBinding
 import java.util.ArrayList
 
 
-class MixFragment: Fragment() {
+class MixFragment: ViewBindingFragment<FragmentMixBinding>(FragmentMixBinding::inflate) {
 
-    private var _binding: FragmentMixBinding? = null
-    private val binding: FragmentMixBinding
-        get() {
-            return _binding!!
-        }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMixBinding.inflate(inflater, container, false)
-        return binding.root
-
-
-    }
         private var isFlagAnimation = false
             var duration = 1000L
 
@@ -63,13 +48,6 @@ class MixFragment: Fragment() {
             }
         }
 
-    }
-
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     companion object {

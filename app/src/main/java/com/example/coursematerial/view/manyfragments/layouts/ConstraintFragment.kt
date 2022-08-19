@@ -5,25 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentConstreintBinding
 
 
-class ConstraintFragment: Fragment() {
+class ConstraintFragment: ViewBindingFragment<FragmentConstreintBinding>(FragmentConstreintBinding::inflate) {
 
-    private var _binding : FragmentConstreintBinding? = null
-    private val binding : FragmentConstreintBinding
-        get(){
-            return _binding!!
-        }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentConstreintBinding.inflate(inflater,container,false)
-        return binding.root
-    }
 
     var flag = true
 
@@ -34,12 +21,6 @@ class ConstraintFragment: Fragment() {
             flag = !flag
             binding.groupOne.visibility = if (flag) View.VISIBLE else View.INVISIBLE
         }
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     companion object{

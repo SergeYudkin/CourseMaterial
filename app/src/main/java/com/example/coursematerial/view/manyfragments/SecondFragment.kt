@@ -8,31 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.coursematerial.BuildConfig
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentSecondBinding
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.EpicViewModel
 
-class SecondFragment: Fragment() {
+class SecondFragment: ViewBindingFragment<FragmentSecondBinding>(FragmentSecondBinding::inflate) {
 
-    private var _binding: FragmentSecondBinding? = null
-    private val binding: FragmentSecondBinding
-        get() {
-            return _binding!!
-        }
 
     private val viewModel: EpicViewModel by lazy {
         ViewModelProvider(this).get(EpicViewModel::class.java)
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,8 +32,7 @@ class SecondFragment: Fragment() {
             renderData(it)
         }
         viewModel.epicSendServerRequest()
-
-
+        
     }
 
     private fun renderData(appState: AppState) {
@@ -68,12 +53,6 @@ class SecondFragment: Fragment() {
 
 
         }
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     companion object {

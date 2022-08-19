@@ -7,32 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentThirdBinding
 import com.example.coursematerial.viewmodel.AppState
 import com.example.coursematerial.viewmodel.MarsViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class ThirdFragment: Fragment() {
-
-    private var _binding: FragmentThirdBinding? = null
-    private val binding: FragmentThirdBinding
-        get() {
-            return _binding!!
-        }
+class ThirdFragment: ViewBindingFragment<FragmentThirdBinding>(FragmentThirdBinding::inflate) {
 
     private val viewModel: MarsViewModel by lazy {
         ViewModelProvider(this).get(MarsViewModel::class.java)
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentThirdBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,13 +51,6 @@ class ThirdFragment: Fragment() {
 
         }
     }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
 
     companion object {
         @JvmStatic

@@ -10,29 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
 import com.example.coursematerial.R
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentAnimationStartBinding
 import com.example.coursematerial.databinding.FragmentElevationBinding
 
 
-class ElevationFragment: Fragment() {
-
-    private var _binding: FragmentElevationBinding? = null
-    private val binding: FragmentElevationBinding
-        get() {
-            return _binding!!
-        }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentElevationBinding.inflate(inflater, container, false)
-        return binding.root
-
-
-    }
-        private var isFlagAnimation = false
+class ElevationFragment: ViewBindingFragment<FragmentElevationBinding>(FragmentElevationBinding::inflate) {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,15 +26,6 @@ class ElevationFragment: Fragment() {
             binding.header.isSelected = binding.scrollView.canScrollVertically(-1)
         }
 
-
-
-    }
-
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     companion object {
@@ -59,7 +33,5 @@ class ElevationFragment: Fragment() {
         fun newInstance() =
             ElevationFragment()
     }
-
-
 
 }

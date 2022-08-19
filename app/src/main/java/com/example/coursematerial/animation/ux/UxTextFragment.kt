@@ -15,44 +15,8 @@ import com.example.coursematerial.databinding.FragmentElevationBinding
 import com.example.coursematerial.databinding.FragmentUxTextBinding
 
 
-class UxTextFragment: Fragment() {
+class UxTextFragment: ViewBindingFragment<FragmentUxTextBinding>(FragmentUxTextBinding::inflate) {
 
-    private var _binding: FragmentUxTextBinding? = null
-    private val binding: FragmentUxTextBinding
-        get() {
-            return _binding!!
-        }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentUxTextBinding.inflate(inflater, container, false)
-        return binding.root
-
-
-    }
-
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            UxTextFragment()
-    }
 
 
 

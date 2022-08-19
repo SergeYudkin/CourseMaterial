@@ -28,6 +28,7 @@ import coil.load
 import com.example.coursematerial.R
 import com.example.coursematerial.R.drawable
 import com.example.coursematerial.R.menu
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentPictureOfTheDayBinding
 
 import com.example.coursematerial.recycler.RecyclerFragment
@@ -43,7 +44,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PictureOfTheDayFragment : Fragment() {
+class PictureOfTheDayFragment : ViewBindingFragment<FragmentPictureOfTheDayBinding>(FragmentPictureOfTheDayBinding::inflate) {
 
     private var isFlag = false
     private var isMain = true
@@ -51,26 +52,12 @@ class PictureOfTheDayFragment : Fragment() {
     private var isFlagAnimation = false
     lateinit var spannableRainbow: SpannableString
 
-    private var _binding : FragmentPictureOfTheDayBinding? = null
-    private val binding : FragmentPictureOfTheDayBinding
-    get(){
-        return _binding!!
-    }
+
 
     private val viewModel: PictureOfTheDayViewModel by lazy{
         ViewModelProvider(this).get(PictureOfTheDayViewModel::class.java)
     }
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentPictureOfTheDayBinding.inflate(inflater,container,false)
-        return binding.root
-
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -279,7 +266,6 @@ class PictureOfTheDayFragment : Fragment() {
     }
 
 
-
     @SuppressLint("NewApi") // TODO HW не потерять пользователей с 24-27 sdk версии
     private fun renderData(appState: AppState){
 
@@ -312,8 +298,6 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.lifeHack.explanation.text = appState.serverResponseData.explanation
 
                 binding.textViewSpan.text = appState.serverResponseData.explanation
-
-
 
 
                 val spannableString: SpannableString = SpannableString(appState.serverResponseData.explanation)
@@ -477,11 +461,6 @@ class PictureOfTheDayFragment : Fragment() {
         (if (ignoreCase) Regex(substr, RegexOption.IGNORE_CASE) else Regex(substr))
             .findAll(this).map { it.range.first }.toList()*/
 
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 
     companion object {
         @JvmStatic

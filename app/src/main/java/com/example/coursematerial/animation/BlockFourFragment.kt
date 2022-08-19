@@ -13,28 +13,14 @@ import androidx.fragment.app.Fragment
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
 import com.example.coursematerial.R
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentAnimationStartBinding
 import com.example.coursematerial.databinding.FragmentBlockFourBinding
 
 
-class BlockFourFragment: Fragment() {
-
-    private var _binding: FragmentBlockFourBinding? = null
-    private val binding: FragmentBlockFourBinding
-        get() {
-            return _binding!!
-        }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentBlockFourBinding.inflate(inflater, container, false)
-        return binding.root
+class BlockFourFragment: ViewBindingFragment<FragmentBlockFourBinding>(FragmentBlockFourBinding::inflate) {
 
 
-    }
         private var isFlagAnimation = false
         var duration = 2000L
 
@@ -88,16 +74,8 @@ class BlockFourFragment: Fragment() {
             }
         }
 
-
-
     }
 
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 
     companion object {
         @JvmStatic

@@ -12,27 +12,14 @@ import androidx.transition.ChangeImageTransform
 import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
 import com.example.coursematerial.R
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentEarthBinding
 import com.example.coursematerial.databinding.FragmentSettingsBinding
 
-class EarthFragment: Fragment() {
+class EarthFragment: ViewBindingFragment<FragmentEarthBinding>(FragmentEarthBinding::inflate) {
 
-    private var _binding: FragmentEarthBinding? = null
-    private val binding: FragmentEarthBinding
-        get() {
-            return _binding!!
-        }
 
     private var isFlagAnimation = false
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentEarthBinding.inflate(inflater,container,false)
-        return binding.root
-    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -64,13 +51,6 @@ class EarthFragment: Fragment() {
             }
             binding.imageViewEarth.layoutParams = params
         }
-    }
-
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     companion object {

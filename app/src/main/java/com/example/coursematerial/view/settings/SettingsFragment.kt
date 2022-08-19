@@ -1,8 +1,6 @@
 package com.example.coursematerial.view.settings
 
 
-
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.coursematerial.R
 import com.example.coursematerial.animation.PausePlayFragment.Companion.newInstance
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentSettingsBinding
 
 import com.example.coursematerial.view.api.EarthFragment
@@ -23,23 +22,8 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : ViewBindingFragment<FragmentSettingsBinding>(FragmentSettingsBinding::inflate) {
 
-    private var _binding: FragmentSettingsBinding? = null
-    private val binding: FragmentSettingsBinding
-        get() {
-            return _binding!!
-        }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentSettingsBinding.inflate(inflater,container,false)
-        return binding.root
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -101,15 +85,10 @@ class SettingsFragment : Fragment() {
         }
     }
 
-
     companion object {
         @JvmStatic
         fun newInstance() =
             SettingsFragment()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 }

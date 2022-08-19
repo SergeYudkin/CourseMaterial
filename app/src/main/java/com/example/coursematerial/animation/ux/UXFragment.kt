@@ -7,32 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import com.example.coursematerial.R
+import com.example.coursematerial.animation.BlockFourFragment
 import com.example.coursematerial.databinding.FragmentUxBinding
+import com.example.coursematerial.databinding.FragmentUxTextBinding
 
 
-class UXFragment: Fragment() {
+class UXFragment: ViewBindingFragment<FragmentUxBinding>(FragmentUxBinding::inflate) {
 
-
-    private var _binding : FragmentUxBinding? = null
-    private val binding : FragmentUxBinding
-        get(){
-            return _binding!!
-        }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentUxBinding.inflate(inflater,container,false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBottomNavigationViewUX()
     }
-
 
     private fun initBottomNavigationViewUX() {
 
@@ -55,7 +41,6 @@ class UXFragment: Fragment() {
         }
         binding.bottomNavigationViewUx.selectedItemId = R.id.ux_text
 
-
     }
 
    /* private fun navigationTo(f: Fragment) {
@@ -70,15 +55,9 @@ class UXFragment: Fragment() {
         ).replace(R.id.ux_container, fragment).commit()
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
     companion object {
         @JvmStatic
-        fun newInstance() = UXFragment()
+        fun newInstance() =
+            UXFragment()
     }
-
 }

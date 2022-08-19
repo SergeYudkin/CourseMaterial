@@ -12,28 +12,15 @@ import androidx.transition.ChangeImageTransform
 import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
 import com.example.coursematerial.R
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentMarsBinding
 import com.example.coursematerial.databinding.FragmentSystemBinding
 import com.example.coursematerial.view.settings.SettingsFragment
 
-class SystemFragment: Fragment() {
+class SystemFragment: ViewBindingFragment<FragmentSystemBinding>(FragmentSystemBinding::inflate) {
 
-    private var _binding: FragmentSystemBinding? = null
-    private val binding: FragmentSystemBinding
-        get() {
-            return _binding!!
-        }
 
     private var isFlagAnimation = false
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentSystemBinding.inflate(inflater,container,false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,16 +53,10 @@ class SystemFragment: Fragment() {
         }
     }
 
-
-
     companion object {
         @JvmStatic
         fun newInstance() =
             SystemFragment()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 }

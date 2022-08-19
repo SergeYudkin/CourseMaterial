@@ -12,27 +12,15 @@ import androidx.transition.ChangeImageTransform
 import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
 import com.example.coursematerial.R
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentEarthBinding
 import com.example.coursematerial.databinding.FragmentMarsBinding
 
-class MarsFragment: Fragment() {
+class MarsFragment: ViewBindingFragment<FragmentMarsBinding>(FragmentMarsBinding::inflate) {
 
-    private var _binding: FragmentMarsBinding? = null
-    private val binding: FragmentMarsBinding
-        get() {
-            return _binding!!
-        }
 
     private var isFlagAnimation = false
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMarsBinding.inflate(inflater,container,false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,15 +53,10 @@ class MarsFragment: Fragment() {
         }
     }
 
-
     companion object {
         @JvmStatic
         fun newInstance() =
             MarsFragment()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 }

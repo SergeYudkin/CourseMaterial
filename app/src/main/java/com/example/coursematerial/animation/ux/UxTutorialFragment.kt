@@ -12,27 +12,13 @@ import smartdevelop.ir.eram.showcaseviewlib.GuideView
 import smartdevelop.ir.eram.showcaseviewlib.config.DismissType
 
 
-class UxTutorialFragment: Fragment() {
-
-    private var _binding: FragmentUxTutorialBinding? = null
-    private val binding: FragmentUxTutorialBinding
-        get() = _binding!!
+class UxTutorialFragment: ViewBindingFragment<FragmentUxTutorialBinding>(FragmentUxTutorialBinding::inflate) {
 
 
      companion object {
         fun newInstance() = UxTutorialFragment()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentUxTutorialBinding.inflate(inflater, container, false)
-        return binding.root
-
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,11 +40,5 @@ class UxTutorialFragment: Fragment() {
             .show()
     }
 
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 
 }

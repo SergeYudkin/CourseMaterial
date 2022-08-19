@@ -7,26 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import com.example.coursematerial.R
+import com.example.coursematerial.animation.ux.ViewBindingFragment
 import com.example.coursematerial.databinding.FragmentMaterialBinding
 
 
-class MaterialFragment: Fragment() {
+class MaterialFragment: ViewBindingFragment<FragmentMaterialBinding>(FragmentMaterialBinding::inflate) {
 
-
-    private var _binding : FragmentMaterialBinding? = null
-    private val binding : FragmentMaterialBinding
-        get(){
-            return _binding!!
-        }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMaterialBinding.inflate(inflater,container,false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,17 +41,10 @@ class MaterialFragment: Fragment() {
         }
         binding.bottomNavigationView.selectedItemId = R.id.action_motion
 
-
     }
 
     private fun navigationTo(f: Fragment) {
         requireActivity().supportFragmentManager.beginTransaction().replace(R.id.material_container, f).commit()
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     companion object {
