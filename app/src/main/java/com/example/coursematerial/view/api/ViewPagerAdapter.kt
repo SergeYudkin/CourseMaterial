@@ -7,11 +7,11 @@ import com.example.coursematerial.view.manyfragments.StartFragment
 
 class ViewPagerAdapter(private val fragmentManager: FragmentManager): FragmentStatePagerAdapter(fragmentManager) {
 
-  // private val fragments = arrayOf(EarthFragment(),MarsFragment(),SystemFragment())
+   private val fragments = arrayOf(EarthFragment(),MarsFragment(),SystemFragment())
 
     override fun getCount(): Int {
-      //  return fragments.size
-        return ADAPTER_SIZE
+       return fragments.size
+       // return ADAPTER_SIZE
     }
 
     override fun getPageTitle(position: Int): CharSequence {
@@ -24,7 +24,7 @@ class ViewPagerAdapter(private val fragmentManager: FragmentManager): FragmentSt
     }
 
     override fun getItem(position: Int): Fragment {
-            return StartFragment.newInstance(position)
+            return fragments[position]
 
     }
 }

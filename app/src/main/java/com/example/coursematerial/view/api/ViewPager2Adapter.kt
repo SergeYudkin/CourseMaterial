@@ -9,20 +9,18 @@ import com.example.coursematerial.view.manyfragments.ThirdFragment
 
 class ViewPager2Adapter(private val fragmentManager: Fragment):FragmentStateAdapter(fragmentManager) {
 
-    private var mass = listOf (FirstFragment,SecondFragment,ThirdFragment)
+    //private var mass = listOf (FirstFragment,SecondFragment,ThirdFragment)
+    private val fragments = arrayOf(EarthFragment(),MarsFragment(),SystemFragment())
 
     override fun getItemCount(): Int {
-            return ADAPTER_SIZE
+            return fragments.size
     }
 
-
         override fun createFragment(position: Int): Fragment {
-            return FirstFragment.newInstance()
+            return fragments[position]
 
 
         }
-
-
 
 }
 

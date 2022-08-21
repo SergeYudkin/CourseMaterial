@@ -266,7 +266,7 @@ class PictureOfTheDayFragment : ViewBindingFragment<FragmentPictureOfTheDayBindi
     }
 
 
-    @SuppressLint("NewApi") // TODO HW не потерять пользователей с 24-27 sdk версии
+
     private fun renderData(appState: AppState){
 
         val mayTran = TransitionSet()
